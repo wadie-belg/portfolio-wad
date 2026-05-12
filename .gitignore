@@ -1,0 +1,9 @@
+# Backup directories
+backup_v1_*/
+
+# macOS system files
+.DS_Store
+
+# IDE settings
+.vscode/
+.idea/
