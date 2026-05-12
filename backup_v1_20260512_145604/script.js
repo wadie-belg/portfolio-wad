@@ -1,0 +1,467 @@
+/**
+ * WADIE BELGACEM - PORTFOLIO ENGINE (ULTIMATE STABLE VERSION)
+ * 
+ * This version is self-contained. All data (Translations & Content) 
+ * are embedded to prevent CORS issues and ensure 100% availability.
+ */
+
+// 1. THE DATA STORE (Integrated Content & Translations)
+const PORTFOLIO_DATA = {
+    translations: {
+        en: {
+       nav: { home: "Home", about: "About", experience: "Experience", education: "Education", conferences: "Conferences", skills: "Skills", contact: "Contact", achievements: "Key Achievements" },
+        sections: { about: "About Me", experience: "Professional Experience", education: "Educational Background", conferences: "Scientific Conferences & Seminars", skills: "Expertise & Skills", extra_pubs: "Publications", extra_hobbies: "Interests & Hobbies", contact: "Get In Touch", achievements: "Key Achievements" },
+        hero: { name: "Wadie Belgacem", subtitle: "Sports Scientist & Professional Coach" },
+        stats: { years: "YEARS EXPERIENCE", conferences: "CONFERENCES", certifications: "CERTIFICATIONS", athletes: "ATHLETES TRAINED" },
+        footer: "© 2024 Wadie Belgacem. Excellence in Sports Science.",
+        lang_btn: "AR"
+    },
+    ar: {
+        nav: { home: "الرئيسية", about: "نبذة عني", experience: "الخبرة المهنية", education: "الخلفية التعليمية", conferences: "المؤتمرات العلمية", skills: "المهارات", contact: "اتصل بنا", achievements: "الإنجازات الرئيسية" },
+        sections: { about: "نبذة عني", experience: "الخبرة المهنية", education: "المؤهلات العلمية", conferences: "المؤتمرات والندوات العلمية", skills: "المهارات والخبرات", extra_pubs: "المنشورات العلمية", extra_hobbies: "الاهتمامات والهوايات", contact: "تواصل معي", achievements: "الإنجازات الرئيسية" },
+        hero: { name: "وديع بلقاسم", subtitle: "عالم رياضة ومدرب رياضي محترف" },
+        stats: { years: "سنوات خبرة", conferences: "المؤتمرات", certifications: "الشهادات", athletes: "رياضيون تم تدريبهم" },
+        footer: "© 2024 وديع بلقاسم. التميز في علوم الرياضة.",
+        lang_btn: "EN"
+        }
+    },
+    content: {
+        personal: {
+            name: { en: "Wadie Belgacem (وديع بلقاسم)", ar: "Wadie Belgacem (وديع بلقاسم)" },
+            title: { en: "Sports Scientist & Professional Coach", ar: "عالم رياضة ومدرب رياضي محترف" },
+            details: [
+                { icon: "📍", label: { en: "Address", ar: "العنوان" }, value: { en: "Gafsa, Tunisia", ar: "قفصة، تونس" } },
+                { icon: "📞", label: { en: "Phone", ar: "الهاتف" }, value: { en: "+216 50 783 359", ar: "+216 50 783 359" } },
+                { icon: "📧", label: { en: "Email", ar: "البريد الإلكتروني" }, value: { en: "wadiebelgacem@outlook.fr", ar: "wadiebelgacem@outlook.fr" } },
+                { icon: "📅", label: { en: "Birth", ar: "تاريخ الميلاد" }, value: { en: "December 08, 1989", ar: "08 ديسمبر 1989" } },
+                { icon: "👤", label: { en: "Nationality", ar: "الجنسية" }, value: { en: "Tunisian", ar: "تونسي" } }
+            ]
+        },
+        about: {
+            en: "Expert in Sports Science and Physical Education, specialized in human and social sciences applied to physical and sports activities. A professional coach and researcher with a vast track record in training, teaching, and sports management.",
+            ar: "خبير في علوم الرياضة والتربية البدنية، متخصص في العلوم الإنسانية والاجتماعية المطبقة على الأنشطة البدنية والرياضية. مدرب وباحث محترف مع سجل حافل في التدريب والتدريس والإدارة الرياضية."
+        },
+        experience: [
+            { category: { en: "Coaching & Athletics", ar: "التدريب والألعاب" }, items: [
+                { period: { en: "2016-2017", ar: "2016-2017" }, role: { en: "Senior Coach", ar: "مدرب أول" }, entity: { en: "Club Sportif Gafsa", ar: "النادي الرياضي القفصي" } },
+                { period: { en: "2015-2016", ar: "2015-2016" }, role: { en: "Futsal Coach (Youth)", ar: "مدرب كرة صالات (الشباب)" }, entity: { en: "Futsal Club Gafsa", ar: "نادي كرة الصالات بقفصة" } },
+                { period: { en: "2014-2015", ar: "2014-2015" }, role: { en: "Women's Youth Coach", ar: "مدربة الشباب للسيدات" }, entity: { en: "Women's Sports Association Gafsa", ar: "الجمعية الرياضية النسوية بقفصة" } },
+                { period: { en: "2011-2012", ar: "2011-2012" }, role: { en: "Physical Trainer", ar: "مدرب بدني" }, entity: { en: "Qawafel Sportive Gafsa", ar: "قوافل الرياضية بقفصة" } },
+                { period: { en: "2004-2011", ar: "2004-2011" }, role: { en: "Professional Football Player", ar: "لاعب كرة قدم محترف" }, entity: { en: "CS Gafsa", ar: "النادي الرياضي القفصي" } }
+            ]},
+            { category: { en: "Academic Teaching", ar: "التدريس الأكاديمي" }, items: [
+                { period: { en: "2015-2016", ar: "2015-2016" }, role: { en: "Physical Ed & Psychology Instructor", ar: "مدرس التربية البدنية وعلم النفس" }, entity: { en: "ISSEP Gafsa", ar: "المعهد العالي للرياضة والتربية البدنية بقفصة" } },
+                { period: { en: "2013-2014", ar: "2013-2014" }, role: { en: "Football Instructor", ar: "مدرس كرة قدم" }, entity: { en: "ISSEP Gafsa", ar: "المعهد العالي للرياضة والتربية البدنية بقفصة" } },
+                { period: { en: "2013-2014", ar: "2013-2014" }, role: { en: "PE Instructor", ar: "مدرس تربية بدنية" }, entity: { en: "Private Engineering School, Gafsa", ar: "مدرسة هندسة خاصة، قفصة" } },
+                { period: { en: "2010-2011", ar: "2010-2011" }, role: { en: "Trainee Physical Ed Teacher", ar: "مدرس تربية بدنية متدرب" }, entity: { en: "Ahmed Tlili Secondary School", ar: "ثانوية أحمد تليلي" } }
+            ]},
+            { category: { en: "Sports Management", ar: "الإدارة الرياضية" }, items: [
+                { period: { en: "2016-2017", ar: "2016-2017" }, role: { en: "General Secretary", ar: "أمين عام" }, entity: { en: "Club Sportif Gafsa", ar: "النادي الرياضي القفصي" } },
+                { period: { en: "2014-2015", ar: "2014-2015" }, role: { en: "General Secretary", ar: "أمين عام" }, entity: { en: "Futsal Club Gafsa", ar: "نادي كرة الصالات بقفصة" } }
+            ]}
+        ],
+        education: [
+            { year: { en: "2012-2014", ar: "2012-2014" }, degree: { en: "Master's in Human and Social Sciences (Sports focus)", ar: "ماجستير في العلوم الإنسانية والاجتماعية (تخصص رياضي)" }, institution: { en: "ISSEP Gafsa", ar: "المعهد العالي للرياضة والتربية البدنية بقفصة" } },
+            { year: { en: "2008-2011", ar: "2008-2011" }, degree: { en: "Bachelor in Physical Education", ar: "إجازة في التربية البدنية" }, institution: { en: "ISSEP Gafsa", ar: "المعهد العالي للرياضة والتربية البدنية بقفصة" } },
+            { year: { en: "2008-2010", ar: "2008-2010" }, degree: { en: "Second Degree in Football Training", ar: "شهادة ثانية في تدريب كرة القدم" }, institution: { en: "ISSEP Gafsa", ar: "المعهد العالي للرياضة والتربية البدنية بقفصة" } },
+            { year: { en: "2007-2008", ar: "2007-2008" }, degree: { en: "Baccalaureate (Arts)", ar: "بكالوريا (آداب)" }, institution: { en: "Ibn Rashid Secondary School", ar: "ثانوية ابن الرشيد" } },
+            { year: { en: "2015", ar: "2015" }, degree: { en: "First Aid & Disaster Medicine Cert", ar: "شهادة الإسعافات الأولية وطب الكوارث" }, institution: { en: "National Civil Protection", ar: "الحماية المدنية" } },
+            { year: { en: "2015", ar: "2015" }, degree:  { en: "Volunteer Training Certificate", ar: "شهادة تدريب تطوعي" }, institution: { en: "National Civil Protection", ar: "الحماية المدنية" } }
+        ],
+        conferences: [
+            { year: { en: "2016", ar: "2016" }, title: { en: "Entrepreneurship & Initiative Workshop", ar: "ورشة العمل حول ريادة الأعمال والمبادرة" }, org: { en: "ANETI", ar: "الوكالة الوطنية للتشغيل والعمل المستقل" } },
+            { year: { en: "2016", ar: "2016" }, title: { en: "2nd International Sports Science Conference", ar: "المؤتمر الدولي الثاني لعلوم الرياضة" }, org: { en: "National Sports Observatory", ar: "المرصد الوطني للرياضة" } },
+            { year: { en: "2016", ar: "2016" }, title: { en: "Research: Visual Perception in Football", ar: "بحث: الإدراك البصري في كرة القدم" }, org: { en: "University of Gafsa", ar: "جامعة قفصة" } },
+            { year: { en: "2016", ar: "2016" }, title: { en: "Supervisory Member: Obesity, Body & Health Forum", ar: "عضو إشرافي: منتدى السمنة والجسم والصحة" }, org: { en: "ISSEP Gafsa", ar: "المعهد العالي للرياضة والتربية البدنية بقفصة" } },
+            { year: { en: "2015", ar: "2015" }, title: { en: "Sociology Researchers Forum", ar: "منتدى الباحثين في علم الاجتماع" }, org: { en: "Tunisian Sociology Assoc.", ar: "الجمعية التونسية لعلم الاجتماع" } },
+            { year: { en: "2014", ar: "2014" }, title: { en: "Sports for Development International Forum", ar: "المنتدى الدولي للرياضة من أجل التنمية" }, org: { en: "University of Gafsa", ar: "جامعة قفصة" } },
+            { year: { en: "2014", ar: "2014" }, title: { en: "Physical Training: Theory to Practice Day", ar: "التدريب البدني: من النظرية إلى التطبيق" }, org: { en: "ISSEP Gafsa", ar: "المعهد العالي للرياضة والتربية البدنية بقفصة" } },
+            { year: { en: "2013", ar: "2013" }, title: { en: "1st Scientific Research Day", ar: "اليوم الأول للبحث العلمي" }, org: { en: "University of Gafsa", ar: "جامعة قفصة" } },
+            { year: { en: "2012", ar: "2012" }, title: { en: "Coach Reskilling Workshop", ar: "ورشة عمل إعادة تأهيل المدربين" }, org: { en: "Tunisian Football League", ar: "الجامعة التونسية لكرة القدم" } },
+            { year: { en: "2012", ar: "2012" }, title: { en: "Modern Tactical & Physical Training", ar: "التدريب التكتيكي والبدني الحديث" }, org: { en: "South West Football League", ar: "الرابطة الجهوية لكرة القدم بالجنوب الغربي" } }
+        ],
+        skills: {
+            languages: [
+                { en: "Arabic (Native)", ar: "العربية (الأم)" },
+                { en: "French (Excellent)", ar: "الفرنسية (ممتاز)" },
+                { en: "English (Good)", ar: "الإنجليزية (جيد)" }
+            ],
+            technical: [
+                { en: "Advanced Computer Skills", ar: "مهارات متقدمة في الحاسوب" },
+                { en: "Internet Research", ar: "البحث عبر الإنترنت" },
+                { en: "Physical Training", ar: "التدريب البدني" },
+                { en: "Sport Management", ar: "الإدارة الرياضية" },
+                { en: "First Aid", ar: "الإسعافات الأولية" }
+            ]
+        },
+        extra: {
+            publications: [ { en: "The effect of time of day on visual perception of distance in football players", ar: "تأثير وقت اليوم على الإدراك البصري للمسافة لدى لاعبي كرة القدم" } ],
+            hobbies: [
+                { en: "Scientific Research", ar: "البحث العلمي" },
+                { en: "Chess", ar: "الشطرنج" },
+                { en: "Football", ar: "كرة القدم" },
+                { en: "Swimming", ar: "السباحة" },
+                { en: "Sports Science", ar: "علوم الرياضة" }
+            ]
+        },
+        achievements: [
+            { icon: "🏆", title: { en: "National Football Player", ar: "لاعب كرة قدم وطني" }, desc: { en: "10 years professional experience with CS Gafsa", ar: "10 سنوات خبرة احترافية مع النادي الرياضي القفصي" }, level: 95 },
+            { icon: "🎓", title: { en: "Master's Degree", ar: "ماجستير في العلوم" }, desc: { en: "Human & Social Sciences with Sports specialization", ar: "العلوم الإنسانية والاجتماعية بتخصص رياضي" }, level: 90 },
+            { icon: "📊", title: { en: "10+ Conferences", ar: "أكثر من 10 مؤتمرات" }, desc: { en: "Presented research at national and international levels", ar: "تقديم أبحاث على المستويين الوطني والدولي" }, level: 85 },
+            { icon: "🏅", title: { en: "5+ Certifications", ar: "أكثر من 5 شهادات" }, desc: { en: "Coaching, First Aid, Civil Protection & more", ar: "تدريب، إسعافات أولية، حماية مدنية والمزيد" }, level: 88 },
+            { icon: "👥", title: { en: "Sports Management", ar: "إدارة رياضية" }, desc: { en: "General Secretary at 2 major sports clubs", ar: "أمين عام في ناديين رياضيين كبار" }, level: 82 },
+            { icon: "📚", title: { en: "Published Research", ar: "أبحاث منشورة" }, desc: { en: "Visual perception study published academically", ar: "دراسة الإدراك البصري منشورة أكاديمياً" }, level: 75 }
+        ]
+    }
+};
+
+// 2. THE CORE ENGINE (Controller)
+let currentLang = 'en';
+
+// Helper to safely get nested values from the object
+function getProp(obj, path, lang) {
+    try {
+        if (!obj) return "";
+        if (path === '' || path === undefined || path === null) {
+            // For empty path: return the value directly (handle language objects)
+            if (typeof obj === 'string') return obj;
+            if (typeof obj === 'object' && !Array.isArray(obj) && lang && (lang in obj)) return obj[lang];
+            return obj && typeof obj === 'object' ? obj : "";
+        }
+        if (typeof obj === 'string') return obj;
+        
+        // If path already starts with 'nav.' or 'sections.', resolve directly
+        if (path.startsWith('nav.') || path.startsWith('sections.')) {
+            const value = path.split('.').reduce((acc, part) => acc && acc[part], obj);
+            if (typeof value === 'string') return value;
+            if (typeof value === 'object' && !Array.isArray(value) && lang && (lang in value)) return value[lang];
+            return value && value[lang] ? value[lang] : (value || "");
+        }
+        
+        // Otherwise try both nav and sections namespaces
+        const navValue = obj.nav && obj.nav[path];
+        const sectionsValue = obj.sections && obj.sections[path];
+        
+        // Prefer object values ({en, ar}) over plain strings
+        if (sectionsValue && typeof sectionsValue === 'object' && !Array.isArray(sectionsValue)) {
+            return sectionsValue[lang] || (sectionsValue.en || "");
+        }
+        if (navValue && typeof navValue === 'object' && !Array.isArray(navValue)) {
+            return navValue[lang] || (navValue.en || "");
+        }
+        if (sectionsValue && typeof sectionsValue === 'string') return sectionsValue;
+        if (navValue && typeof navValue === 'string') return navValue;
+        
+        // Fallback: check if the path exists directly on obj (for content data like achievements, experience items, etc.)
+        const directValue = obj[path];
+        if (directValue !== undefined && directValue !== null) {
+            if (typeof directValue === 'object' && !Array.isArray(directValue)) {
+                return directValue[lang] || (directValue.en || "");
+            }
+            if (typeof directValue === 'string') return directValue;
+        }
+        
+        return "";
+    } catch (e) { return ""; }
+}
+
+// New i18n helper: get translated string by data-i18n key
+function getI18nText(trans, key, lang) {
+    // key is like 'nav.home' or 'sections.about'
+    return getProp(trans, key, lang);
+}
+
+// Main Initialization
+document.addEventListener('DOMContentLoaded', () => {
+    initParticles();
+    initAnimations();
+    setupLanguage();
+    renderAll(currentLang);
+    
+    // CRITICAL FIX: Force all critical elements to full opacity after Three.js init
+    // This overrides any inline opacity styles left by Three.js animation
+    setTimeout(() => {
+        const criticalSelectors = [
+            '.info-bar', '.info-bar .info-item', '.info-bar .info-item span',
+            '.info-bar .info-item label', '.info-bar .info-item > div',
+            '.hero-content h1', '.hero-content .subtitle',
+            '.section h2', '.section h3', '.section h4', '.section .section-title',
+            '.stats-section', '.stats-section .stat-number', '.stats-section .stat-label',
+            '.stats-section .stat-value',
+            '#extra', '.extra-container h3',
+            '#contact', 'footer'
+        ];
+        criticalSelectors.forEach(sel => {
+            document.querySelectorAll(sel).forEach(el => {
+                el.style.opacity = '1';
+            });
+        });
+        // Also refresh ScrollTrigger after forcing opacity
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+        }
+    }, 1500);
+});
+
+function setupLanguage() {
+    const btn = document.getElementById('lang-switcher');
+    if (btn) {
+        btn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            updateLanguageUI(currentLang);
+        });
+    }
+}
+
+function updateLanguageUI(lang) {
+    // 1. Update HTML Attributes
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('data-lang', lang);
+
+    // 2. Get language-specific translations
+    const langTrans = PORTFOLIO_DATA.translations[lang];
+
+    // 3. Update Switcher Button
+    const btn = document.getElementById('lang-switcher');
+    if (btn) btn.innerText = langTrans.lang_btn;
+
+    // 4. Update Footer
+    const footerEl = document.querySelector('footer p');
+    if (footerEl) footerEl.textContent = langTrans.footer;
+
+    // 5. Update Hero Section (name & subtitle)
+    const heroName = document.querySelector('.hero-content h1');
+    const heroSubtitle = document.querySelector('.hero-content .subtitle');
+    const hero = langTrans.hero;
+    if (heroName) heroName.textContent = hero.name;
+    if (heroSubtitle) heroSubtitle.textContent = hero.subtitle;
+
+    // 6. Update Stats Section Labels
+    const statsLabels = document.querySelectorAll('.stat-label');
+    const stats = langTrans.stats;
+    if (statsLabels.length) {
+        statsLabels[0].textContent = stats.years;
+        statsLabels[1].textContent = stats.conferences;
+        statsLabels[2].textContent = stats.certifications;
+        statsLabels[3].textContent = stats.athletes;
+    }
+
+    // 7. Update all elements with [data-i18n]
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const text = getI18nText(langTrans, key, lang);
+        if (text) el.textContent = text;
+    });
+
+    // 8. Re-render dynamic content
+    renderAll(lang);
+}
+
+function renderAll(lang) {
+    const data = PORTFOLIO_DATA.content;
+    const trans = PORTFOLIO_DATA.translations[lang];
+
+    // Personal Info
+    const infoContainer = document.getElementById('personal-info-container');
+    if (infoContainer) {
+        infoContainer.innerHTML = data.personal.details.map(d => `
+            <div class="info-item">
+                <span>${d.icon}</span>
+                <label>${getProp(d, 'label', lang)}</label>
+                <div>${getProp(d, 'value', lang)}</div>
+            </div>
+        `).join('');
+    }
+
+    // About Me
+    const aboutEl = document.getElementById('about-text');
+    if (aboutEl) {
+        aboutEl.textContent = data.about[lang];
+    }
+
+    // Experience
+    const expContainer = document.getElementById('experience-container');
+    if (expContainer) {
+        expContainer.innerHTML = data.experience.flatMap(group => 
+            group.items.map(item => `
+                <div class="content-card">
+                    <span class="exp-period">${getProp(item, 'period', lang)}</span>
+                    <span class="exp-role">${getProp(item, 'role', lang)}</span>
+                    <span class="exp-entity">${getProp(item, 'entity', lang)}</span>
+                </div>
+            `)
+        ).join('');
+    }
+
+    // Education
+    const eduContainer = document.getElementById('education-container');
+    if (eduContainer) {
+        eduContainer.innerHTML = data.education.map(edu => `
+            <div class="content-card">
+                <span class="exp-period">${getProp(edu, 'year', lang)}</span>
+                <span class="exp-degree">${getProp(edu, 'degree', lang)}</span>
+                <span class="exp-institution">${getProp(edu, 'institution', lang)}</span>
+            </div>
+        `).join('');
+    }
+
+    // Conferences (with badges)
+    const confEl = document.getElementById('conferences-container');
+    if (confEl) {
+        confEl.innerHTML = data.conferences.map(conf => {
+            const title = getProp(conf, 'title', lang);
+            let badge = 'conf';
+            if (title.includes('workshop') || title.includes('ورشة')) badge = 'workshop';
+            if (title.includes('Forum') || title.includes('منتدى')) badge = 'forum';
+            if (title.includes('Research') || title.includes('بحث')) badge = 'research';
+            return `
+                <div class="conf-item">
+                    <span class="conf-badge ${badge}">● ${badge.toUpperCase()}</span>
+                    <span class="conf-year">${getProp(conf, 'year', lang)}</span>
+                    <span class="conf-title">${getProp(conf, 'title', lang)}</span>
+                    <span class="conf-org">${getProp(conf, 'org', lang)}</span>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Skills
+    const skillsContainer = document.getElementById('skills-container');
+    if (skillsContainer) {
+        const allSkills = [...data.skills.languages, ...data.skills.technical];
+        skillsContainer.innerHTML = allSkills.map(s => 
+            `<span class="skill-tag">${getProp(s, '', lang) || s[lang]}</span>`
+        ).join('');
+    }
+
+    // Extra (Pubs & Hobbies)
+    const pubContainer = document.getElementById('publications-container');
+    if (pubContainer) {
+        pubContainer.innerHTML = data.extra.publications.map(p => `<p>📖 ${p[lang]}</p>`).join('');
+    }
+
+    const hobbyContainer = document.getElementById('hobbies-container');
+    if (hobbyContainer) {
+        hobbyContainer.innerHTML = data.extra.hobbies.map(h => 
+            `<span class="skill-tag">${h[lang]}</span>`
+        ).join('');
+    }
+
+    // Contact
+    const contactInfo = document.getElementById('contact-info');
+    if (contactInfo) {
+        contactInfo.innerHTML = data.personal.details.map(d => `
+            <p>${d.icon} <span>${getProp(d, 'value', lang)}</span></p>
+        `).join('');
+    }
+
+    // Achievements
+    const achContainer = document.getElementById('achievements-container');
+    if (achContainer) {
+        achContainer.innerHTML = data.achievements.map(a => `
+            <div class="achievement-card">
+                <span class="achievement-icon">${a.icon}</span>
+                <div class="achievement-title">${getProp(a, 'title', lang)}</div>
+                <div class="achievement-desc">${getProp(a, 'desc', lang)}</div>
+            </div>
+        `).join('');
+    }
+
+    // Translate all data-i18n elements using lang-specific translations
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const text = getI18nText(trans, key, lang);
+        if (text) el.textContent = text;
+    });
+
+    // Re-trigger ScrollTrigger refresh for updated content
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+    }
+    initScrollTop();
+    initStatsCounter();
+}
+
+function initParticles() {
+    if (typeof particlesJS !== 'undefined') {
+        particlesJS('particles-js', {
+            "particles": { "number": { "value": 80 }, "color": { "value": "#00d4ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00d4ff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2 } },
+            "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } } },
+            "retina_detect": true
+        });
+    }
+}
+
+function initAnimations() {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Initial Hero Reveal
+        gsap.from(".reveal-text", { opacity: 0, y: 50, duration: 1.2, ease: "power4.out" });
+        gsap.from(".subtitle", { opacity: 0, duration: 1.5, delay: 0.5 });
+
+        // Scroll Reveal for all sections (fixed: no reverse to keep content visible)
+        const sections = document.querySelectorAll(".section, .info-bar, .extra-container");
+        sections.forEach(sec => {
+            gsap.from(sec.children, {
+                scrollTrigger: {
+                    trigger: sec,
+                    start: "top 85%",
+                    toggleActions: "play none none none"  // FIX: never reverse/hide content
+                },
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                stagger: 0.15
+            });
+        });
+        
+        // Stats counter animation
+        const statNumbers = document.querySelectorAll('.stat-number');
+        if (statNumbers.length) {
+            ScrollTrigger.create({
+                trigger: '.stats-section',
+                start: 'top 80%',
+                onEnter: () => {
+                    statNumbers.forEach(stat => {
+                        const target = parseInt(stat.getAttribute('data-target'));
+                        let current = 0;
+                        const increment = target / 60;
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                stat.textContent = target + '+';
+                                clearInterval(timer);
+                            } else {
+                                stat.textContent = Math.floor(current);
+                            }
+                        }, 30);
+                    });
+                },
+                once: true
+            });
+        }
+    }
+}
+
+function initScrollTop() {
+    const btn = document.getElementById('scroll-top-btn');
+    if (!btn) return;
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+            btn.classList.add('visible');
+        } else {
+            btn.classList.remove('visible');
+        }
+    });
+    
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+function initStatsCounter() {
+    // Already handled in initAnimations via ScrollTrigger
+}

@@ -1,0 +1,22 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
+    "conferences": "Conferences",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "sections": {
+    "about": "About Me",
+    "experience": "Professional Experience",
+    "education": "Educational Background",
+    "conferences": "Scientific Conferences & Seminars",
+    "skills": "Expertise & Skills",
+    "extra_pubs": "Publications",
+    "extra_hobbies": "Interests & Hobbies",
+    "contact": "Get In Touch"
+  },
+  "footer": "© 2024 Wadie Belgacem. Excellence in Sports Science."
+}

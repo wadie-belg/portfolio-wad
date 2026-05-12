@@ -1,0 +1,578 @@
+{
+  "personal": {
+    "name": {
+      "en": "Wadie Belgacem (وديع بلقاسم)",
+      "ar": "Wadie Belgacem (وديع بلقاسم)"
+    },
+    "title": {
+      "en": "Sports Scientist & Professional Coach",
+      "ar": "Sports Scientist & Professional Coach"
+    },
+    "details": [
+      {
+        "icon": {
+          "en": "📍",
+          "ar": "📍"
+        },
+        "label": {
+          "en": "Address",
+          "ar": "العنوان"
+        },
+        "value": {
+          "en": "Gafsa, Tunisia",
+          "ar": "Gafsa, Tunisia"
+        }
+      },
+      {
+        "icon": {
+          "en": "📞",
+          "ar": "📞"
+        },
+        "label": {
+          "en": "Phone",
+          "ar": "الهاتف"
+        },
+        "value": {
+          "en": "+216 50 783 359",
+          "ar": "+216 50 783 359"
+        }
+      },
+      {
+        "icon": {
+          "en": "📧",
+          "ar": "📧"
+        },
+        "label": {
+          "en": "Email",
+          "ar": "البرint_email"
+        },
+        "value": {
+          "en": "wadiebelgacem@outlook.fr",
+          "ar": "wadiebelgacem@outlook.fr"
+        }
+      },
+      {
+        "icon": {
+          "en": "📅",
+          "ar": "📅"
+        },
+        "label": {
+          "en": "Birth",
+          "ar": "تاريخ الميلاد"
+        },
+        "value": {
+          "en": "December 08, 1989",
+          "ar": "December 08, 1989"
+        }
+      },
+      {
+        "icon": {
+          "en": "👤",
+          "ar": "👤"
+        },
+        "label": {
+          "en": "Nationality",
+          "ar": "الجنسية"
+        },
+        "value": {
+          "en": "Tunisian",
+          "ar": "Tunisian"
+        }
+      },
+      {
+        "icon": {
+          "en": "🆔",
+          "ar": "🆔"
+        },
+        "label": {
+          "en": "Passport",
+          "ar": "جواز السفر"
+        },
+        "value": {
+          "en": "R663066",
+          "ar": "R663066"
+        }
+      }
+    ]
+  },
+  "about": {
+    "en": "Expert in Sports Science and Physical Education, specialized in human and social sciences applied to physical and sports activities. A professional coach and researcher with a vast track record in training, teaching, and sports management.",
+    "ar": "خبير في علوم الرياضة والتربية البدنية، متخصص في العلوم الإنسانية والاجتماعية المطبقة على الأنشطة البدنية والرياضية. مدرب وباحث محترف مع سجل حافل في التدريب والتدريس والإدارة الرياضية."
+  },
+  "education": [
+    {
+      "year": {
+        "en": "2012-2014",
+        "ar": "2012-2014"
+      },
+      "degree": {
+        "en": "Master's in Human and Social Sciences (Sports focus)",
+        "ar": "Master's in Human and Social Sciences (Sports focus)"
+      },
+      "institution": {
+        "en": "ISSEP Gafsa",
+        "ar": "المعهد العالي للرياضة والتربية البدنية بقفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2008-2011",
+        "ar": "2008-2011"
+      },
+      "degree": {
+        "en": "Bachelor in Physical Education",
+        "ar": "Bachelor in Physical Education"
+      },
+      "institution": {
+        "en": "ISSEP Gafsa",
+        "ar": "المعهد العالي للرياضة والتربية البدنية بقفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2008-2010",
+        "ar": "2008-2010"
+      },
+      "degree": {
+        "en": "Second Degree in Football Training",
+        "ar": "Second Degree in Football Training"
+      },
+      "institution": {
+        "en": "ISSEP Gafsa",
+        "ar": "المعهد العالي للرياضة والتربية البدنية بقفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2007-2008",
+        "ar": "2007-2008"
+      },
+      "degree": {
+        "en": "Baccalaureate (Arts)",
+        "ar": "Baccalaureate (Arts)"
+      },
+      "institution": {
+        "en": "Ibn Rashid Secondary School",
+        "ar": "ثانوية ابن رش  الرشيد"
+      }
+    },
+    {
+      "year": {
+        "en": "2015",
+        "ar": "2015"
+      },
+      "degree": {
+        "en": "First Aid & Disaster Medicine Cert",
+        "ar": "First Aid & Disaster Medicine Cert"
+      },
+      "institution": {
+        "en": "National Civil Protection",
+        "ar": "الحماية المدنية"
+      }
+    },
+    {
+      "year": {
+        "en": "2015",
+        "ar": "2015"
+      },
+      "degree": {
+        "en": "Volunteer Training Certificate",
+        "ar": "Volunteer Training Certificate"
+      },
+      "institution": {
+        "en": "National Civil Protection",
+        "ar": "الحماية المدنية"
+      }
+    }
+  ],
+  "experience": [
+    {
+      "category": {
+        "en": "Coaching & Athletics",
+        "ar": "Coaching & Athletics"
+      },
+      "items": [
+        {
+          "period": {
+            "en": "2016-2017",
+            "ar": "2016-2017"
+          },
+          "role": {
+            "en": "Senior Coach",
+            "ar": "Senior Coach"
+          },
+          "entity": {
+            "en": "Club Sportif Gafsa",
+            "ar": "النادي الرياضي القفصي"
+          }
+        },
+        {
+          "period": {
+            "en": "2015-2016",
+            "ar": "2015-2016"
+          },
+          "role": {
+            "en": "Futsal Coach (Youth)",
+            "ar": "Futsal Coach (Youth)"
+          },
+          "entity": {
+            "en": "Futsal Club Gafsa",
+            "ar": "نادي كرة الصالات بقفصة"
+          }
+        },
+        {
+          "period": {
+            "en": "2014-2015",
+            "ar": "2014-2015"
+          },
+          "role": {
+            "en": "Women's Youth Coach",
+            "ar": "Women's Youth Coach"
+          },
+          "entity": {
+            "en": "Women's Sports Association Gafsa",
+            "ar": "جمعية الرياضة النسوية بقفصة"
+          }
+        },
+        {
+          "period": {
+            "en": "2011-2012",
+            "ar": "2011-2012"
+          },
+          "role": {
+            "en": "Physical Trainer",
+            "ar": "Physical Trainer"
+          },
+          "entity": {
+            "en": "Qawafel Sportive Gafsa",
+            "ar": "قوافل الرياضية بقفصة"
+          }
+        },
+        {
+          "period": {
+            "en": "2004-2011",
+            "ar": "2004-2011"
+          },
+          "role": {
+            "en": "Professional Football Player",
+            "ar": "Professional Football Player"
+          },
+          "entity": {
+            "en": "CS Gafsa",
+            "ar": "النادي الرياضي القفصي"
+          }
+        }
+      ]
+    },
+    {
+      "category": {
+        "en": "Academic Teaching",
+        "ar": "Academic Teaching"
+      },
+      "items": [
+        {
+          "period": {
+            "en": "2015-2016",
+            "ar": "2015-2016"
+          },
+          "role": {
+            "en": "Physical Ed & Psychology Instructor",
+            "ar": "Physical Ed & Psychology Instructor"
+          },
+          "entity": {
+            "en": "ISSEP Gafsa",
+            "ar": "المعهد العالي للرياضة والتربية البدنية بقفصة"
+          }
+        },
+        {
+          "period": {
+            "en": "2013-2014",
+            "ar": "2013-2014"
+          },
+          "role": {
+            "en": "Football Instructor",
+            "ar": "Football Instructor"
+          },
+          "entity": {
+            "en": "ISSEP Gafsa",
+            "ar": "المعهد العالي للرياضة والتربية البدنية بقفصة"
+          }
+        },
+        {
+          "period": {
+            "en": "2013-2014",
+            "ar": "2013-2014"
+          },
+          "role": {
+            "en": "PE Instructor",
+            "ar": "PE Instructor"
+          },
+          "entity": {
+            "en": "Private Engineering School, Gaf_ca",
+            "ar": "Private Engineering School, Gaf_ca"
+          }
+        },
+        {
+          "period": {
+            "en": "2010-2011",
+            "ar": "2010-2011"
+          },
+          "role": {
+            "en": "Trainee Physical Ed Teacher",
+            "ar": "Trainee Physical Ed Teacher"
+          },
+          "entity": {
+            "en": "Ahmed Tlili Secondary School",
+            "ar": "ثانوية أحمد تليلي"
+          }
+        }
+      ]
+    },
+    {
+      "category": {
+        "en": "Sports Management",
+        "ar": "Sports Management"
+      },
+      "items": [
+        {
+          "period": {
+            "en": "2016-2017",
+            "ar": "2016-2017"
+          },
+          "role": {
+            "en": "General Secretary",
+            "ar": "General Secretary"
+          },
+          "entity": {
+            "en": "Club Sportif Gafsa",
+            "ar": "النادي الرياضي القفصي"
+          }
+        },
+        {
+          "period": {
+            "en": "2014-2015",
+            "ar": "2014-2015"
+          },
+          "role": {
+            "en": "General Secretary",
+            "ar": "General Secretary"
+          },
+          "entity": {
+            "en": "Futsal Club Gafsa",
+            "ar": "نادي كرة الصالات بقفصة"
+          }
+        }
+      ]
+    }
+  ],
+  "conferences": [
+    {
+      "year": {
+        "en": "2016",
+        "ar": "2016"
+      },
+      "title": {
+        "en": "Entrepreneurship & Initiative Workshop",
+        "ar": "Entrepreneurship & Initiative Workshop"
+      },
+      "org": {
+        "en": "ANETI",
+        "ar": "الوكالة الوطنية للتشغيل والعمل المستقل"
+      }
+    },
+    {
+      "year": {
+        "en": "2016",
+        "ar": "2016"
+      },
+      "title": {
+        "en": "2nd International Sports Science Conference",
+        "ar": "2nd International Sports Science Conference"
+      },
+      "org": {
+        "en": "National Sports Observatory",
+        "ar": "المرصد الوطني للرياضة"
+      }
+    },
+    {
+      "year": {
+        "en": "2016",
+        "ar": "2016"
+      },
+      "title": {
+        "en": "Research: Visual Perception in Football",
+        "ar": "Research: Visual Perception in Football"
+      },
+      "org": {
+        "en": "University of Gafsa",
+        "ar": "جامعة قفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2016",
+        "ar": "2016"
+      },
+      "title": {
+        "en": "Supervisory Member: Obesity, Body & Health Forum",
+        "ar": "Supervisory Member: Obesity, Body & Health Forum"
+      },
+      "org": {
+        "en": "ISSEP Gafsa",
+        "ar": "المعهد العالي للرياضة والتربية البدنية بقفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2015",
+        "ar": "2015"
+      },
+      "title": {
+        "en": "Sociology Researchers Forum",
+        "ar": "Sociology Researchers Forum"
+      },
+      "org": {
+        "en": "Tunisian Sociology Assoc.",
+        "ar": "الجمع  الجمعية التونسية لعلم الاجتماع"
+      }
+    },
+    {
+      "year": {
+        "en": "2014",
+        "ar": "2014"
+      },
+      "title": {
+        "en": "Sports for Development International Forum",
+        "ar": "Sports for Development International Forum"
+      },
+      "org": {
+        "en": "University of Gafsa",
+        "ar": "جامعة قفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2014",
+        "ar": "2014"
+      },
+      "title": {
+        "en": "Physical Training: Theory to Practice Day",
+        "ar": "Physical Training: Theory to Practice Day"
+      },
+      "org": {
+        "en": "ISSEP Gafsa",
+        "ar": "المعهد العالي للرياضة والتربية البدنية بقفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2013",
+        "ar": "2013"
+      },
+      "title": {
+        "en": "1st Scientific Research Day",
+        "ar": "1st Scientific Research Day"
+      },
+      "org": {
+        "en": "University of Gafsa",
+        "ar": "جامعة قفصة"
+      }
+    },
+    {
+      "year": {
+        "en": "2012",
+        "ar": "2012"
+      },
+      "title": {
+        "en": "Coach Reskilling Workshop",
+        "ar": "Coach Reskilling Workshop"
+      },
+      "org": {
+        "en": "Tunisian Football League",
+        "ar": "الجامعة التونسية لكرة القدم"
+      }
+    },
+    {
+      "year": {
+        "en": "2012",
+        "ar": "2012"
+      },
+      "title": {
+        "en": "Modern Tactical & Physical Training",
+        "ar": "Modern Tactical & Physical Training"
+      },
+      "org": {
+        "en": "South West Football League",
+        "ar": "الرابطة الجهوية لكرة القدم بالجنوب الغربي"
+      }
+    }
+  ],
+  "skills": {
+    "languages": [
+      {
+        "en": "Arabic (Native)",
+        "ar": "العربية (الأم)"
+      },
+      {
+        "en": "French (Excellent)",
+        "ar": "الفرنسية (ممتاز)"
+      },
+      {
+        "en": "English (Good)",
+        "ar": "الإنجليزية (جيد)"
+      }
+    ],
+    "technical": [
+      {
+        "en": "Advanced Computer Skills",
+        "ar": "مهارات متقدمة في الحاسوب"
+      },
+      {
+        "en": "Internet Research",
+        "ar": "البحث عبر الإنترنت"
+      },
+      {
+        "en": "Physical Training",
+        "ar": "التدريب البدني"
+      },
+      {
+        "en": "Sport Management",
+        "ar": "الإدارة الرياضية"
+      },
+      {
+        "en": "First Aid",
+        "ar": "الإسعافات الأولية"
+      }
+    ]
+  },
+  "extra": {
+    "publications": [
+      {
+        "en": "The effect of time of day on visual perception of distance in football players",
+        "ar": "تأثير وقت اليوم على الإدراك البصري للمسافة لدى لاعبي كرة القدم"
+      }
+    ],
+    "hobbies": [
+      {
+        "en": "Scientific Research",
+        "ar": "البحث العلمي"
+      },
+      {
+        "en": "Chess",
+        "ar": "الشطرنج"
+      },
+      {
+        "en": "Football",
+        "ar": "كرة القدم"
+      },
+      {
+        "en": "Swimming",
+        "ar": "السباحة"
+      },
+      {
+        "en": "Sports Science",
+        "ar": "علوم الرياضة"
+      }
+    ]
+  }
+}
