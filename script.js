@@ -13,7 +13,7 @@ const PORTFOLIO_DATA = {
         sections: { about: "About Me", experience: "Professional Experience", education: "Educational Background", conferences: "Scientific Conferences & Seminars", skills: "Expertise & Skills", extra_pubs: "Publications", extra_hobbies: "Interests & Hobbies", contact: "Get In Touch", achievements: "Key Achievements" },
         hero: { name: "Wadie Belgacem", subtitle: "Sports Scientist & Professional Coach" },
         stats: { years: "YEARS EXPERIENCE", conferences: "CONFERENCES", certifications: "CERTIFICATIONS", athletes: "ATHLETES TRAINED" },
-        footer: "© 2024 Wadie Belgacem. Excellence in Sports Science.",
+        footer: "© {YEAR} Wadie Belgacem. Excellence in Sports Science.",
         lang_btn: "AR"
     },
     ar: {
@@ -21,7 +21,7 @@ const PORTFOLIO_DATA = {
         sections: { about: "نبذة عني", experience: "الخبرة المهنية", education: "المؤهلات العلمية", conferences: "المؤتمرات والندوات العلمية", skills: "المهارات والخبرات", extra_pubs: "المنشورات العلمية", extra_hobbies: "الاهتمامات والهوايات", contact: "تواصل معي", achievements: "الإنجازات الرئيسية" },
         hero: { name: "وديع بلقاسم", subtitle: "عالم رياضة ومدرب رياضي محترف" },
         stats: { years: "سنوات خبرة", conferences: "المؤتمرات", certifications: "الشهادات", athletes: "رياضيون تم تدريبهم" },
-        footer: "© 2024 وديع بلقاسم. التميز في علوم الرياضة.",
+        footer: "© {YEAR} وديع بلقاسم. التميز في علوم الرياضة.",
         lang_btn: "EN"
         }
     },
@@ -179,6 +179,10 @@ function getI18nText(trans, key, lang) {
     initHeroParallax();
     initHamburgerMenu();
     
+    // Set initial footer year
+    const footerEl = document.getElementById('footer-text');
+    if (footerEl) footerEl.textContent = `© ${new Date().getFullYear()} Wadie Belgacem. Excellence in Sports Science.`;
+    
     // CRITICAL FIX: Force all critical elements to full opacity after Three.js init
     // This overrides any inline opacity styles left by Three.js animation
     setTimeout(() => {
@@ -227,9 +231,9 @@ function updateLanguageUI(lang) {
     const btn = document.getElementById('lang-switcher');
     if (btn) btn.innerText = langTrans.lang_btn;
 
-    // 4. Update Footer
+    // 4. Update Footer (dynamic year)
     const footerEl = document.querySelector('footer p');
-    if (footerEl) footerEl.textContent = langTrans.footer;
+    if (footerEl) footerEl.textContent = langTrans.footer.replace('{YEAR}', new Date().getFullYear());
 
     // 5. Update Hero Section (name & subtitle)
     const heroName = document.querySelector('.hero-content h1');
