@@ -172,10 +172,12 @@ function getI18nText(trans, key, lang) {
 }
 
 // Main Initialization
-document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     setupLanguage();
     renderAll(currentLang);
+    initHeroParallax();
+    initHamburgerMenu();
     
     // CRITICAL FIX: Force all critical elements to full opacity after Three.js init
     // This overrides any inline opacity styles left by Three.js animation
@@ -279,19 +281,8 @@ function renderAll(lang) {
         aboutEl.textContent = data.about[lang];
     }
 
-    // Experience
-    const expContainer = document.getElementById('experience-container');
-    if (expContainer) {
-        expContainer.innerHTML = data.experience.flatMap(group => 
-            group.items.map(item => `
-                <div class="content-card">
-                    <span class="exp-period">${getProp(item, 'period', lang)}</span>
-                    <span class="exp-role">${getProp(item, 'role', lang)}</span>
-                    <span class="exp-entity">${getProp(item, 'entity', lang)}</span>
-                </div>
-            `)
-        ).join('');
-    }
+    // Experience (Enhanced with categories)
+    renderEnhancedExperience(lang);
 
     // Education
     const eduContainer = document.getElementById('education-container');
@@ -458,4 +449,168 @@ function initScrollTop() {
 
 function initStatsCounter() {
     // Already handled in initAnimations via ScrollTrigger
+}
+
+// =============================================
+// HAMBURGER MENU — Mobile Navigation
+// =============================================
+function initHamburgerMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (!hamburger || !navLinks) return;
+    
+    // Toggle menu on hamburger click
+    hamburger.addEventListener('click', () => {
+        const isActive = hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isActive.toString());
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isActive ? 'hidden' : '';
+    });
+    
+    // Close menu when a nav link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Close menu when clicking outside (on the backdrop)
+    document.addEventListener('click', (e) => {
+        if (navLinks.classList.contains('active') && 
+            !navLinks.contains(e.target) && 
+            !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Close menu on resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024) {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// =============================================
+// HERO PARALLAX EFFECT
+// =============================================
+function initHeroParallax() {
+    const heroWrapper = document.getElementById('hero-content-wrapper');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (!heroWrapper) return;
+
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                const heroHeight = heroWrapper.offsetHeight || window.innerHeight;
+                const scrollFraction = Math.min(scrollY / heroHeight, 1);
+                
+                // Scale down and fade out
+                const scale = 1 - (scrollFraction * 0.3);
+                const translateY = scrollY * 0.4;
+                const opacity = 1 - (scrollFraction * 0.8);
+                
+                heroWrapper.style.transform = `scale(${Math.max(scale, 0.7)}) translateY(${translateY}px)`;
+                heroWrapper.style.opacity = Math.max(opacity, 0.2);
+                
+                // Fade out scroll indicator faster
+                if (scrollIndicator) {
+                    scrollIndicator.style.opacity = Math.max(1 - (scrollFraction * 3), 0);
+                }
+                
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+// =============================================
+// ENHANCED EXPERIENCE RENDERING — Alternating Layout
+// =============================================
+function renderEnhancedExperience(lang) {
+    const data = PORTFOLIO_DATA.content;
+    const expContainer = document.getElementById('experience-container');
+    if (!expContainer || !data.experience) return;
+
+    // Placeholder images (sports-themed Unsplash)
+    const placeholderImages = {
+        coaching: [
+            'https://images.unsplash.com/photo-1574629810060-5beaa3277764?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1461896836934-bd358e8e9281?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&h=400&fit=crop'
+        ],
+        academic: [
+            'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&h=400&fit=crop'
+        ],
+        management: [
+            'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop',
+            'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop'
+        ]
+    };
+
+    function getImageURL(categoryName) {
+        const cat = categoryName.toLowerCase();
+        if (cat.includes('coaching') || cat.includes('التدريب')) return placeholderImages.coaching;
+        if (cat.includes('academic') || cat.includes('التدريس الأكاديمي')) return placeholderImages.academic;
+        if (cat.includes('management') || cat.includes('الإدارة')) return placeholderImages.management;
+        return placeholderImages.coaching;
+    }
+
+    expContainer.innerHTML = data.experience.map(group => {
+        const categoryTitle = getProp(group, 'category', lang);
+        const items = group.items.map((item, idx) => {
+            const period = getProp(item, 'period', lang);
+            const role = getProp(item, 'role', lang);
+            const entity = getProp(item, 'entity', lang);
+            const images = getImageURL(categoryTitle);
+            const imgUrl = images[idx % images.length];
+            // Alternate: even index = text-left, odd index = text-right
+            const isTextFirst = idx % 2 === 0;
+
+            return `
+                <div class="hero-custom-section exp-item-container ${isTextFirst ? 'text-first' : 'text-last'}">
+                    <div class="exp-text-side">
+                        <span class="exp-period">${period}</span>
+                        <h3 class="hero-custom-section-exp-role">${role}</h3>
+                        <p class="hero-custom-section-exp-entity">${entity}</p>
+                    </div>
+                    <div class="exp-image-side">
+                        <img src="${imgUrl}" alt="${role}" loading="lazy">
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        return `
+            <div class="hero-custom-section exp-category-wrapper">
+                <div class="experience-category-header">
+                    <span class="category-icon"></span>
+                    <h3 class="experience-category-title">${categoryTitle}</h3>
+                </div>
+                <div class="hero-custom-section exp-items-row">
+                    ${items}
+                </div>
+            </div>
+        `;
+    }).join('');
 }
