@@ -115,6 +115,9 @@ const PORTFOLIO_DATA = {
     }
 };
 
+// Reduced motion helper — returns true if user prefers reduced motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // 2. THE CORE ENGINE (Controller)
 let currentLang = 'en';
 
@@ -374,14 +377,21 @@ function renderAll(lang) {
             </div>
         `;
         
-        // Trigger animation after render
-        requestAnimationFrame(() => {
+        // Trigger animation after render (skip if reduced motion preferred)
+        if (prefersReducedMotion) {
+            // Instant fill — no animation
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                bar.classList.add('animated');
+            });
+        } else {
             requestAnimationFrame(() => {
-                document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-                    bar.classList.add('animated');
+                requestAnimationFrame(() => {
+                    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                        bar.classList.add('animated');
+                    });
                 });
             });
-        });
+        }
     }
 
     // Extra (Pubs & Hobbies)
@@ -472,6 +482,20 @@ function initAnimations() {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
         
+        // Skip all GSAP animations if user prefers reduced motion
+        if (prefersReducedMotion) {
+            // Make all sections immediately visible
+            document.querySelectorAll(".reveal-on-scroll").forEach(el => {
+                el.classList.add('visible');
+            });
+            // Ensure all content cards, conf items, etc. are visible
+            document.querySelectorAll(".content-card, .conf-item, .pub-box, .hobby-box, .edu-item, .skill-item, .achievement-card").forEach(el => {
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+            return; // Exit early — no GSAP animations
+        }
+        
         // Initial Hero Reveal
         gsap.from(".reveal-text", { opacity: 0, y: 50, duration: 1.2, ease: "power4.out" });
         gsap.from(".subtitle", { opacity: 0, duration: 1.5, delay: 0.5 });
@@ -492,13 +516,21 @@ function initAnimations() {
             });
         });
         
-        // Stats counter animation
+        // Stats counter animation (skip if reduced motion)
         const statNumbers = document.querySelectorAll('.stat-number');
         if (statNumbers.length) {
             ScrollTrigger.create({
                 trigger: '.stats-section',
                 start: 'top 80%',
                 onEnter: () => {
+                    if (prefersReducedMotion) {
+                        // Show final values immediately
+                        statNumbers.forEach(stat => {
+                            const target = parseInt(stat.getAttribute('data-target'));
+                            stat.textContent = target + '+';
+                        });
+                        return;
+                    }
                     statNumbers.forEach(stat => {
                         const target = parseInt(stat.getAttribute('data-target'));
                         let current = 0;

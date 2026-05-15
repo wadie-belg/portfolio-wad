@@ -208,7 +208,7 @@ To reduce token usage:
 - [x] Phase 1 (Critical): T01-T03 ✅ مكتملة
 - [x] Phase 2 (High): T04-T09 ✅ مكتملة
 - [x] Phase 3 (Medium): T10-T15 ✅ مكتملة بالكامل
-- [ ] Phase 4 (Low): T16-T22 🔧 جارية — T16 مكتمل
+- [ ] Phase 4 (Low): T16-T22 🔧 جارية — T16, T17 مكتمل
 
 ---
 
@@ -244,6 +244,7 @@ To reduce token usage:
 - ✅ T14 — Smooth Scroll for Nav Links (intercept clicks, scrollTo with nav offset + mobile menu close + history.pushState)
 - ✅ T15 — Contact Form (validation + mailto: submit + error handling + success feedback + i18n + RTL)
 - ✅ T16 — Service Worker (Offline Support — cache-first strategy + SW registration + assets caching)
+- ✅ T17 — Dark/Light Mode Toggle (theme switching + localStorage + prefers-color-scheme + RTL support)
 
 ---
 
@@ -331,6 +332,6 @@ At the beginning of every new session:
 
 **Date:** 2026-05-15
 
-**Last completed task:** T16 — Service Worker (Offline Support — cache-first strategy + SW registration + assets caching)
+**Last completed task:** T17 — Dark/Light Mode Toggle (theme switching + localStorage + prefers-color-scheme + RTL support)
 
-**Current project status:** Stable — core features + loading screen + scroll progress + timeline view + skill bars + smooth scroll + contact form + offline support implemented, 6 remaining tasks (T17–T22)
+**Current project status:** Stable — core features + loading screen + scroll progress + timeline view + skill bars + smooth scroll + contact form + offline support + dark/light mode toggle implemented, 5 remaining tasks (T18–T22)

@@ -206,14 +206,17 @@
 ---
 
 ### T17 — Dark/Light Mode Toggle
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `style.css`, `script.js`  
-**الوصف:** الموقع dark فقط — يمكن إضافة light mode.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `index.html`, `style.css`, `script.js`  
+**الوصف:** تم إضافة زر تبديل الوضع المظلم/الفاتح مع حفظ الاختيار في localStorage + CSS variables للوضعين + دعم prefers-color-scheme (كشف تفضيل النظام).  
 **الخطوات:**
-1. إضافة CSS variables للـ light mode
-2. إضافة toggle button في nav
-3. حفظ الاختيار في localStorage
-4. دعم prefers-color-scheme
+1. ✅ إضافة CSS variables للـ light mode
+2. ✅ إضافة toggle button في nav مع أيقونات sun/moon SVG
+3. ✅ حفظ الاختيار في localStorage
+4. ✅ دعم prefers-color-scheme (via JS matchMedia detection + change listener)
+5. ✅ دعم RTL: margin swap للزر
+6. ✅ Smooth transition عند التبديل (0.3s ease)
+7. ✅ Icon swap: sun → moon عند light mode والعكس
 
 ---
 
@@ -296,7 +299,7 @@
 المرحلة 1: Critical (T01-T03)      [✅ مكتملة بالكامل]
  المرحلة 2: High (T04-T09)           [✅ مكتملة بالكامل]
 المرحلة 3: Medium (T10-T15)         [✅ مكتملة بالكامل]
-المرحلة 4: Low (T16-T22)            [🔧 جارية — T16 مكتمل]
+المرحلة 4: Low (T16-T22)            [🔧 جارية — T16, T17 مكتمل]
 ```
 
 ---

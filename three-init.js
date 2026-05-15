@@ -28,6 +28,12 @@ let targetMouseX = 0, targetMouseY = 0;
 let scrollProgress = 0;
 let clock;
 
+// Reduced motion check — bail out of animation loop if preferred
+let reducedMotionPreferred = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
+    reducedMotionPreferred = e.matches;
+});
+
 // Theme colors — matching the portfolio cyan/purple/green/amber
 const THEME = {
     cyan:    new THREE.Color(0x06b6d4),
@@ -116,9 +122,15 @@ export function initThreeJS() {
     window.addEventListener('scroll', onScroll);
 
     // 10. Animation loop
-    animate();
-
-    console.log('✅ Tactical Grid + Sport Particles initialized');
+    // If reduced motion preferred, render once and skip animation loop
+    if (reducedMotionPreferred) {
+        // Static render — no animation loop
+        composer.render();
+        console.log('✅ Tactical Grid + Sport Particles initialized (static — reduced motion)');
+    } else {
+        animate();
+        console.log('✅ Tactical Grid + Sport Particles initialized');
+    }
 }
 
 // ========================= TACTICAL GRID =========================
@@ -477,6 +489,13 @@ function onResize() {
 // ========================= ANIMATION LOOP =========================
 function animate() {
     requestAnimationFrame(animate);
+
+    // Skip all animation work if user prefers reduced motion
+    if (reducedMotionPreferred) {
+        // Only render once (static scene), then skip
+        composer.render();
+        return;
+    }
 
     const elapsed = clock.getElapsedTime();
 
