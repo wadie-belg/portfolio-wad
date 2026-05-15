@@ -178,6 +178,8 @@ function getI18nText(trans, key, lang) {
     renderAll(currentLang);
     initHeroParallax();
     initHamburgerMenu();
+    initActiveNav();
+    initSmoothScroll();
     
     // Set initial footer year
     const footerEl = document.getElementById('footer-text');
@@ -288,16 +290,28 @@ function renderAll(lang) {
     // Experience (Enhanced with categories)
     renderEnhancedExperience(lang);
 
-    // Education
+    // Education (Timeline)
     const eduContainer = document.getElementById('education-container');
     if (eduContainer) {
-        eduContainer.innerHTML = data.education.map(edu => `
-            <div class="content-card">
-                <span class="exp-period">${getProp(edu, 'year', lang)}</span>
-                <span class="exp-degree">${getProp(edu, 'degree', lang)}</span>
-                <span class="exp-institution">${getProp(edu, 'institution', lang)}</span>
+        eduContainer.innerHTML = `
+            <div class="edu-timeline">
+                ${data.education.map((edu, idx) => {
+                    const year = getProp(edu, 'year', lang);
+                    const degree = getProp(edu, 'degree', lang);
+                    const institution = getProp(edu, 'institution', lang);
+                    return `
+                        <div class="edu-item timeline-item" data-index="${idx}">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <span class="timeline-year-badge">${year}</span>
+                                <h3 class="timeline-title">${degree}</h3>
+                                <p class="timeline-subtitle">${institution}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('')}
             </div>
-        `).join('');
+        `;
     }
 
     // Conferences (with badges)
@@ -320,13 +334,54 @@ function renderAll(lang) {
         }).join('');
     }
 
-    // Skills
+    // Skills — categorized progress bars
     const skillsContainer = document.getElementById('skills-container');
     if (skillsContainer) {
-        const allSkills = [...data.skills.languages, ...data.skills.technical];
-        skillsContainer.innerHTML = allSkills.map(s => 
-            `<span class="skill-tag">${getProp(s, '', lang) || s[lang]}</span>`
-        ).join('');
+        const langLabels = lang === 'ar' 
+            ? { languages: 'اللغات', technical: 'المهارات التقنية' }
+            : { languages: 'Languages', technical: 'Technical Skills' };
+        
+        skillsContainer.innerHTML = `
+            <div class="skills-categorized">
+                <div class="skill-category">
+                    <h3>🌐 ${langLabels.languages}</h3>
+                    ${data.skills.languages.map(s => `
+                        <div class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-item-name">${getProp(s, '', lang) || s[lang]}</span>
+                                <span class="skill-item-level">${s.level}%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="--level: ${s.level}%"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="skill-category">
+                    <h3>⚡ ${langLabels.technical}</h3>
+                    ${data.skills.technical.map(s => `
+                        <div class="skill-item">
+                            <div class="skill-item-header">
+                                <span class="skill-item-name">${getProp(s, '', lang) || s[lang]}</span>
+                                <span class="skill-item-level">${s.level}%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-bar-fill" style="--level: ${s.level}%"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        // Trigger animation after render
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                    bar.classList.add('animated');
+                });
+            });
+        });
     }
 
     // Extra (Pubs & Hobbies)
@@ -348,6 +403,37 @@ function renderAll(lang) {
         contactInfo.innerHTML = data.personal.details.map(d => `
             <p>${d.icon} <span>${getProp(d, 'value', lang)}</span></p>
         `).join('');
+    }
+
+    // Social Links
+    const socialLinks = document.getElementById('social-links');
+    if (socialLinks && data.social) {
+        const svgIcons = {
+            linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+            twitter: '<path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>',
+            researchgate: '<path d="M9 16a7 7 0 1 1 7-7"/><path d="M12 13a3 3 0 1 0 0 6"/><path d="M22 22l-5-10-5 10"/><path d="M14 9h-8" />'
+        };
+        
+        const platforms = Object.entries(data.social).map(([key, val]) => ({
+            key,
+            url: val.url,
+            label: val.label[lang],
+            icon: svgIcons[key] || ''
+        }));
+
+        socialLinks.innerHTML = `
+            <div class="social-label" data-i18n="social.connect">Connect With Me</div>
+            <div class="social-grid">
+                ${platforms.map(p => `
+                    <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            ${p.icon}
+                        </svg>
+                        <span class="social-label-text">${p.label}</span>
+                    </a>
+                `).join('')}
+            </div>
+        `;
     }
 
     // Achievements
@@ -507,6 +593,136 @@ function initHamburgerMenu() {
 }
 
 // =============================================
+// ACTIVE NAV LINK HIGHLIGHTING — IntersectionObserver
+// =============================================
+function initActiveNav() {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    if (!navLinks.length) return;
+
+    // Build list of section IDs that have corresponding nav links
+    const sectionIds = [];
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+            sectionIds.push(href.slice(1));
+        }
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-100px 0px -50% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        // Find the section whose top is closest to the top of the viewport
+        let bestEntry = null;
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (!bestEntry || entry.boundingClientRect.top < bestEntry.boundingClientRect.top) {
+                    bestEntry = entry;
+                }
+            }
+        });
+
+        if (bestEntry) {
+            const id = bestEntry.target.id;
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
+        }
+    }, observerOptions);
+
+    sectionIds.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) observer.observe(section);
+    });
+
+    // Fallback: also handle on scroll for edge cases
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollPos = window.scrollY + 120; // offset for fixed nav
+
+                // Get only sections that have nav links, sorted by offset
+                const sections = [];
+                sectionIds.forEach(id => {
+                    const section = document.getElementById(id);
+                    if (section) sections.push({ id, offset: section.offsetTop });
+                });
+                sections.sort((a, b) => a.offset - b.offset);
+
+                // Find the section just above the scroll position
+                let currentSection = '';
+                for (const sec of sections) {
+                    if (sec.offset <= scrollPos) {
+                        currentSection = sec.id;
+                    }
+                }
+
+                if (currentSection) {
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${currentSection}`);
+                    });
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+// =============================================
+// SMOOTH SCROLL FOR NAV LINKS — T14
+// =============================================
+function initSmoothScroll() {
+    const navLinks = document.querySelectorAll('.nav-links a, .hero-cta[href^="#"]');
+    if (!navLinks.length) return;
+
+    const getNavHeight = () => {
+        const nav = document.querySelector('.glass-nav');
+        return nav ? nav.offsetHeight : 80;
+    };
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href || !href.startsWith('#')) return;
+
+            const targetId = href.slice(1);
+            const targetEl = document.getElementById(targetId);
+            if (!targetEl) return;
+
+            e.preventDefault();
+
+            const navHeight = getNavHeight();
+            const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
+
+            // Close mobile menu if open
+            const hamburger = document.getElementById('hamburger');
+            const navLinksContainer = document.querySelector('.nav-links');
+            if (hamburger && navLinksContainer) {
+                hamburger.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            // Update URL without jumping
+            if (history.pushState) {
+                history.pushState(null, '', href);
+            }
+        });
+    });
+}
+
+// =============================================
 // HERO PARALLAX EFFECT
 // =============================================
 function initHeroParallax() {
@@ -551,70 +767,82 @@ function renderEnhancedExperience(lang) {
     const expContainer = document.getElementById('experience-container');
     if (!expContainer || !data.experience) return;
 
-    // Placeholder images (sports-themed Unsplash)
-    const placeholderImages = {
-        coaching: [
-            'https://images.unsplash.com/photo-1574629810060-5beaa3277764?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1461896836934-bd358e8e9281?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1552674605-db6ffd4facb5?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=600&h=400&fit=crop'
-        ],
-        academic: [
-            'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&h=400&fit=crop'
-        ],
-        management: [
-            'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=600&h=400&fit=crop',
-            'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=400&fit=crop'
-        ]
-    };
-
-    function getImageURL(categoryName) {
-        const cat = categoryName.toLowerCase();
-        if (cat.includes('coaching') || cat.includes('التدريب')) return placeholderImages.coaching;
-        if (cat.includes('academic') || cat.includes('التدريس الأكاديمي')) return placeholderImages.academic;
-        if (cat.includes('management') || cat.includes('الإدارة')) return placeholderImages.management;
-        return placeholderImages.coaching;
-    }
-
-    expContainer.innerHTML = data.experience.map(group => {
+    expContainer.innerHTML = data.experience.map((group, groupIdx) => {
         const categoryTitle = getProp(group, 'category', lang);
         const items = group.items.map((item, idx) => {
             const period = getProp(item, 'period', lang);
             const role = getProp(item, 'role', lang);
             const entity = getProp(item, 'entity', lang);
-            const images = getImageURL(categoryTitle);
-            const imgUrl = images[idx % images.length];
-            // Alternate: even index = text-left, odd index = text-right
-            const isTextFirst = idx % 2 === 0;
+            // Alternate left/right for visual interest
+            const side = (idx % 2 === 0) ? 'timeline-left' : 'timeline-right';
 
             return `
-                <div class="hero-custom-section exp-item-container ${isTextFirst ? 'text-first' : 'text-last'}">
-                    <div class="exp-text-side">
-                        <span class="exp-period">${period}</span>
-                        <h3 class="hero-custom-section-exp-role">${role}</h3>
-                        <p class="hero-custom-section-exp-entity">${entity}</p>
-                    </div>
-                    <div class="exp-image-side">
-                        <img src="${imgUrl}" alt="${role}" loading="lazy">
+                <div class="timeline-item ${side}" data-index="${idx}">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-connector"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-period">${period}</span>
+                        <h3 class="timeline-title">${role}</h3>
+                        <p class="timeline-subtitle">${entity}</p>
                     </div>
                 </div>
             `;
         }).join('');
 
         return `
-            <div class="hero-custom-section exp-category-wrapper">
-                <div class="experience-category-header">
-                    <span class="category-icon"></span>
-                    <h3 class="experience-category-title">${categoryTitle}</h3>
-                </div>
-                <div class="hero-custom-section exp-items-row">
+            <div class="timeline-category">
+                <h3 class="timeline-category-title">${categoryTitle}</h3>
+                <div class="timeline">
                     ${items}
                 </div>
             </div>
         `;
     }).join('');
 }
+
+// =============================================
+// LOADING SCREEN HIDE LOGIC
+// =============================================
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        // Remove from DOM after transition
+        setTimeout(() => {
+            loadingScreen.remove();
+        }, 600);
+    }
+}
+
+// =============================================
+// SCROLL PROGRESS INDICATOR
+// =============================================
+function initScrollProgress() {
+    const progressBar = document.getElementById('scroll-progress');
+    if (!progressBar) return;
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = `${Math.min(scrollPercent, 100)}%`;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+// Hide loading screen when DOM is ready + libraries loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for Three.js + GSAP to initialize
+    setTimeout(hideLoadingScreen, 1500);
+    // Initialize scroll progress indicator
+    initScrollProgress();
+});
+
+// Fallback: force hide after 5 seconds max
+setTimeout(hideLoadingScreen, 5000);

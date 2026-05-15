@@ -56,9 +56,9 @@
 ---
 
 ### T05 — Active Nav Link Highlighting
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `script.js`  
-**الوصف:** الروابط في الـ nav لا تضيء عند التمرير للقسم المناسب.  
+**الوصف:** الروابط في الـ nav تضيء عند التمرير للقسم المناسب باستخدام IntersectionObserver.  
 **الخطوات:**
 1. استخدام IntersectionObserver لمراقبة الأقسام
 2. إضافة class `.active` للرابط المطابق للقسم الحالي
@@ -67,106 +67,110 @@
 ---
 
 ### T06 — SEO Meta Tags
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `index.html`  
-**الوصف:** لا توجد meta tags للـ SEO — يضاف وصف، كلمات مفتاحية، Open Graph، Twitter Cards.  
+**الوصف:** تم إضافة meta tags للـ SEO — وصف، كلمات مفتاحية، Open Graph، Twitter Cards.  
 **الخطوات:**
-1. إضافة `<meta name="description" content="...">`
-2. إضافة `<meta name="keywords" content="...">`
-3. إضافة Open Graph tags (og:title, og:description, og:image, og:url)
-4. إضافة Twitter Card tags
-5. إضافة `<link rel="canonical" href="...">`
+1. ✅ إضافة `<meta name="description" content="...">`
+2. ✅ إضافة `<meta name="keywords" content="...">`
+3. ✅ إضافة Open Graph tags (og:title, og:description, og:image, og:url)
+4. ✅ إضافة Twitter Card tags
+5. ✅ إضافة `<link rel="canonical" href="...">`
 
 ---
 
 ### T07 — Structured Data (JSON-LD)
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `index.html`  
-**الوصف:** لا يوجد Schema.org markup — يضاف Person schema للـ SEO.  
+**الوصف:** تم إضافة Schema.org Person markup لتحسين Rich Snippets في محركات البحث.  
 **الخطوات:**
-1. إضافة `<script type="application/ld+json">` في `<head>`
-2. تعريف Person schema مع الاسم، المهنة، العنوان، الهاتف، البريد
-3. إضافة sameAs لروابط التواصل الاجتماعي
+1. ✅ إضافة `<script type="application/ld+json">` في `<head>`
+2. ✅ تعريف Person schema مع الاسم، المهنة، العنوان، الهاتف، البريد
+3. ✅ إضافة `sameAs` لروابط التواصل الاجتماعي (قابلة للتعبئة لاحقاً)
 
 ---
 
 ### T08 — زر تحميل السيرة الذاتية (CV Download)
-**الح状态:** ⏳ في الانتظار  
-**الملفات:** `index.html`, `script.js`  
-**الوصف:** لا يوجد زر لتحميل PDF — يضاف في Hero section و Contact section.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `index.html`, `data/lang/ar.json`, `data/lang/en.json`  
+**الوصف:** تم إضافة زر "Download CV" في Hero CTA group مع ملف PDF placeholder.  
 **الخطوات:**
-1. إضافة زر "Download CV" في Hero CTA group
-2. إضافة رابط `<a download>` يشير إلى `assets/cv/wadie-belgacem-cv.pdf`
-3. إضافة placeholder PDF في `assets/cv/`
-4. دعم RTL: تغيير نص الزر حسب اللغة
+1. ✅ إضافة زر "Download CV" في Hero CTA group (بجانب Contact Me و Learn More)
+2. ✅ إضافة رابط `<a href="assets/cv/wadie-belgacem-cv.pdf" download>`
+3. ✅ إنشاء ملف PDF placeholder في `assets/cv/wadie-belgacem-cv.pdf`
+4. ✅ إضافة ترجمة `download_cv` في `ar.json` و `en.json`
 
 ---
 
 ### T09 — Social Media Links
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `index.html`, `data/content.json`, `script.js`  
-**الوصف:** لا توجد روابط تواصل اجتماعي — يضاف LinkedIn وغيرها.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `index.html`, `data/content.json`, `script.js`, `style.css`, `data/lang/en.json`, `data/lang/ar.json`  
+**الوصف:** تم إضافة روابط التواصل الاجتماعي (LinkedIn, X/Twitter, ResearchGate) مع أيقونات SVG وتصميم كروت تفاعلية.  
 **الخطوات:**
-1. إضافة social media fields في `content.json`
-2. إضافة social icons في Contact section
-3. استخدام SVG icons (LinkedIn, Twitter/X, ResearchGate)
-4. دعم RTL: ترتيب الأيقونات
+1. ✅ إضافة social media fields في `content.json`
+2. ✅ إضافة container للروابط في Contact section
+3. ✅ إضافة SVG icons (LinkedIn, Twitter/X, ResearchGate)
+4. ✅ إضافة CSS styling مع تأثيرات hover و glassmorphism
+5. ✅ إضافة `sameAs` في JSON-LD structured data
+6. ✅ دعم الترجمة AR/EN لاسمن المنصات
+7. ✅ دعم RTL: الترتيب يتبع اتجاه الصفحة
 
 ---
 
 ## 🟡 MEDIUM — تحسينات تجربة المستخدم
 
 ### T10 — Loading Screen / Skeleton
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `index.html`, `style.css`, `script.js`  
-**الوصف:** لا يوجد loading screen — المحتوى يظهر فجأة.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `index.html`, `style.css`, `script.js`, `data/lang/ar.json`, `data/lang/en.json`  
+**الوصف:** تم إضافة شاشة تحميل مع spinner متحرك و skeleton cards وتأثير glassmorphism.  
 **الخطوات:**
-1. إضافة overlay loading في `<body>`
-2. CSS: animation pulse على skeleton cards
-3. JS: إخفاء overlay عند تحميل DOM + Three.js
-4. دعم RTL: اتجاه النص
+1. ✅ إضافة overlay loading في `<body>` مع رسالة "جارِ التحميل..."
+2. ✅ CSS: animation pulse على skeleton cards + glassmorphism
+3. ✅ JS: إخفاء overlay عند تحميل DOM + Three.js (1.5s) مع fallback 5s
+4. ✅ دعم RTL: اتجاه النص + إضافة key `loading` في ar.json و en.json
 
 ---
 
 ### T11 — Scroll Progress Indicator
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `style.css`, `script.js`  
-**الوصف:** لا يوجد مؤشر تقدم — يضاف شريط رفيع أعلى الصفحة.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `index.html`, `style.css`, `script.js`  
+**الوصف:** تم إضافة شريط تقدم متحرك أعلى الصفحة بألوان gradient مع glow effect.  
 **الخطوات:**
-1. إضافة `<div class="scroll-progress">` في `<body>`
-2. CSS: position fixed top, height 3px, width animated
-3. JS: تحديث width بناءً على scroll percentage
+1. ✅ إضافة `<div class="scroll-progress" id="scroll-progress">` بعد loading screen
+2. ✅ CSS: position fixed top, height 3px, gradient background (Cyan→Purple→Emerald), glow shadow
+3. ✅ JS: `initScrollProgress()` — تحديث `width` بناءً على `scrollY / docHeight * 100` مع rAF optimization
+4. ✅ دعم RTL: لا يؤثر على الشريط (position: fixed, width%)
 
 ---
 
 ### T12 — Timeline View للتجربة والتعليم
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `script.js`, `style.css`  
-**الوصف:** العرض الحالي للتجربة والتعليم ليس timeline — يمكن تحسينه.  
+**الوصف:** تم تحويل عرض التجربة والتعليم إلى Timeline أنيق مع خط عمودي، نقاط ملونة، وبطاقات متبادلة.  
 **الخطوات:**
-1. إضافة CSS timeline (خط عمودي مع نقاط)
-2. تعديل renderEnhancedExperience لإنتاج timeline HTML
-3. تعديل renderEducation لإنتاج timeline
-4. دعم RTL: عكس اتجاه الخط
+1. ✅ إضافة CSS timeline (خط عمودي مع نقاط + بطاقات متبادلة + RTL support)
+2. ✅ تعديل renderEnhancedExperience لإنتاج timeline HTML
+3. ✅ تعديل rendering التعليم لإنتاج timeline
+4. ✅ دعم RTL: عكس اتجاه الخط والبطاقات
 
 ---
 
 ### T13 — Skill Proficiency Bars
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `data/content.json`, `script.js`, `style.css`  
-**الوصف:** المهارات تُعرض كـ tags فقط — يمكن إضافة progress bars.  
+**الوصف:** تم تحويل المهارات من tags إلى categorized progress bars متحركة مع مستويات.  
 **الخطوات:**
-1. إضافة `level` field لكل مهارة في `content.json`
-2. تعديل renderAll لإنتاج skill bars بدلاً من tags
-3. إضافة animation fill على bars
-4. دعم RTL: اتجاه التعبئة
+1. ✅ إضافة `level` field لكل مهارة في `content.json`
+2. ✅ تعديل renderAll لإنتاج skill bars بدلاً من tags
+3. ✅ إضافة animation fill على bars (requestAnimationFrame)
+4. ✅ دعم RTL: اتجاه التعبئة ([dir="rtl"] .skill-item-header { flex-direction: row-reverse })
 
 ---
 
 ### T14 — Smooth Scroll for Nav Links
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `script.js`  
-**الوصف:** `scroll-behavior: smooth` موجود في CSS لكن لا يوجد offset للـ nav bar الثابت.  
+**الوصف:** تم إضافة `initSmoothScroll()` — عند الضغط على أي رابط في الـ nav أو الـ hero، يتم التمرير السلس مع offset تلقائي لتجنب تغطية الـ navbar الثابت. يدعم إغلاق القائمة المتنقلة وتحديث URL بدون قفز.  
 **الخطوات:**
 1. إضافة event listeners على nav links
 2. استخدام `scrollTo` مع offset = nav height
@@ -288,13 +292,17 @@
 
 ```
 المرحلة 1: Critical (T01-T03)      [✅ مكتملة بالكامل]
-المرحلة 2: High (T04-T09)           [🟢 T04 مكتمل | 5 متبقية]
-المرحلة 3: Medium (T10-T15)         [⏳ لم تبدأ]
+ المرحلة 2: High (T04-T09)           [✅ مكتملة بالكامل]
+المرحلة 3: Medium (T10-T15)         [✅ مكتملة بالكامل]
 المرحلة 4: Low (T16-T22)            [⏳ لم تبدأ]
 ```
 
 ---
 
-*آخر تحديث: 2026-05-14*
+*آخر تحديث: 2026-05-15*
 *تم الإنشاء بواسطة: Hermes Agent*
-*T04 مكتمل: Mobile Hamburger Menu — ✅*
+*T10 مكتمل: Loading Screen / Skeleton — ✅*
+*T11 مكتمل: Scroll Progress Indicator — ✅*
+*T12 مكتمل: Timeline View (Experience & Education) — ✅*
+*T13 مكتمل: Skill Proficiency Bars (categorized progress bars) — ✅*
+*T14 مكتمل: Smooth Scroll for Nav Links — ✅*

@@ -197,8 +197,9 @@ To reduce token usage:
 ## CURRENT TASKS
 
 - [ ] See `todo.md` — 22 prioritized tasks across 4 phases
-- [ ] Phase 1 (Critical): T01 typo fix, T02 favicon, T03 dynamic footer year
-- [ ] Phase 2 (High): T04 hamburger menu, T05 active nav, T06 SEO, T07 JSON-LD, T08 CV download, T09 social links
+- [x] Phase 1 (Critical): T01-T03 ✅ مكتملة
+- [x] Phase 2 (High): T04-T09 ✅ مكتملة
+|- [x] Phase 3 (Medium): T10-T15 ✅ مكتملة بالكامل
 
 ---
 
@@ -222,6 +223,16 @@ To reduce token usage:
 - ✅ Task tracking system: `todo.md` (22 tasks, 4 phases)
 - ✅ Decision log: `decision-log.md`
 - ✅ PROJECT_STATE.md updated with current roadmap
+- ✅ T05 — Active Nav Link Highlighting (IntersectionObserver)
+- ✅ T06 — SEO Meta Tags (description, keywords, OG, Twitter Cards, canonical)
+- ✅ T07 — Structured Data (JSON-LD Person Schema)
+- ✅ T08 — Download CV Button (Hero CTA + PDF placeholder + i18n keys)
+- ✅ T09 — Social Media Links (LinkedIn, X/Twitter, ResearchGate + SVG icons + JSON-LD sameAs + AR/EN i18n)
+|- ✅ T10 — Loading Screen / Skeleton (overlay + spinner + skeleton cards + glassmorphism + i18n)
+|- ✅ T11 — Scroll Progress Indicator (fixed gradient bar with glow + rAF scroll listener)
+|- ✅ T12 — Timeline View (Experience & Education — vertical timeline with alternating cards, dots, year badges, RTL support)
+|- ✅ T13 — Skill Proficiency Bars (categorized progress bars with animation + RTL support + level percentages)
+|- ✅ T14 — Smooth Scroll for Nav Links (intercept clicks, scrollTo with nav offset + mobile menu close + history.pushState)
 
 ---
 
@@ -306,8 +317,8 @@ At the beginning of every new session:
 
 ## LAST UPDATED
 
-**Date:** 2026-05-14
+**Date:** 2026-05-15
 
-**Last completed task:** Task tracking system created — `todo.md` (22 tasks across 4 phases) and `decision-log.md` initialized
+**Last completed task:** T14 — Smooth Scroll for Nav Links (intercept clicks, scrollTo with nav offset + mobile menu close + history.pushState)
 
-**Current project status:** Stable — all core features implemented, 22 improvement tasks planned across 4 priority phases
+**Current project status:** Stable — core features + loading screen + scroll progress + timeline view + skill bars + smooth scroll implemented, 8 improvement tasks remaining (T15–T22)

@@ -6,6 +6,51 @@
     <title>Wadie Belgacem | Professional Portfolio</title>
     <!-- Favicon -->
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Wadie Belgacem — Sports Scientist & Professional Coach based in Gafsa, Tunisia. Expert in sports science, coaching, and athletic development.">
+    <meta name="keywords" content="Wadie Belgacem, Sports Scientist, Coach, Football Coach, Sports Science, Tunisia, Gafsa, Athletic Training, Performance Analysis">
+    <meta name="author" content="Wadie Belgacem">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://wadie-belgacem-portfolio.com/">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="https://wadie-belgacem-portfolio.com/">
+    <meta property="og:title" content="Wadie Belgacem | Sports Scientist & Professional Coach">
+    <meta property="og:description" content="Wadie Belgacem — Sports Scientist & Professional Coach based in Gafsa, Tunisia. Expert in sports science, coaching, and athletic development.">
+    <meta property="og:image" content="https://wadie-belgacem-portfolio.com/assets/og-image.jpg">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://wadie-belgacem-portfolio.com/">
+    <meta name="twitter:title" content="Wadie Belgacem | Sports Scientist & Professional Coach">
+    <meta name="twitter:description" content="Wadie Belgacem — Sports Scientist & Professional Coach based in Gafsa, Tunisia. Expert in sports science, coaching, and athletic development.">
+    <meta name="twitter:image" content="https://wadie-belgacem-portfolio.com/assets/og-image.jpg">
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Wadie Belgacem",
+      "jobTitle": "Sports Scientist & Professional Coach",
+      "url": "https://wadie-belgacem-portfolio.com/",
+      "telephone": "+216 50 783 359",
+      "email": "mailto:wadiebelgacem@outlook.fr",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Gafsa",
+        "addressCountry": "TN"
+      },
+      "birthDate": "1989-12-08",
+      "nationality": {
+        "@type": "Country",
+        "name": "Tunisia"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/wadie-belgacem",
+        "https://twitter.com/wadie_belgacem",
+        "https://www.researchgate.net/profile/Wadie-Belgacem"
+      ]
+    }
+    </script>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +71,21 @@
     <script type="module" src="three-init.js"></script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text" data-i18n="loading">جارِ التحميل...</p>
+            <div class="loading-skeleton">
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+                <div class="skeleton-card"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
     
     <nav class="glass-nav">
         <div class="logo">WB</div>
@@ -69,6 +129,10 @@
                     </a>
                     <a href="#about" class="hero-cta hero-cta-secondary">
                         <span>Learn More</span>
+                    </a>
+                    <a href="assets/cv/wadie-belgacem-cv.pdf" download class="hero-cta hero-cta-secondary hero-cta-download">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Download CV</span>
                     </a>
                 </div>
             </div>
@@ -191,7 +255,7 @@
                 <path d="M12 11v2"/>
             </svg>
         </div>
-        <div id="skills-container" class="skills-flex"></div>
+        <div id="skills-container" class="skills-categorized"></div>
     </section>
 
     <section id="extra" class="section">
@@ -219,6 +283,7 @@
                 </svg>
             </div>
             <div id="contact-info" class="contact-info"></div>
+            <div id="social-links" class="social-links"></div>
         </div>
     </section>
 

@@ -18,5 +18,10 @@
     "extra_hobbies": "Interests & Hobbies",
     "contact": "Get In Touch"
   },
+  "download_cv": "Download CV",
+  "loading": "Loading...",
+  "social": {
+    "connect": "Connect With Me"
+  },
   "footer": "© 2024 Wadie Belgacem. Excellence in Sports Science."
 }
