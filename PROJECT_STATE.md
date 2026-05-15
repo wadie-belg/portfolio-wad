@@ -71,13 +71,14 @@ portfolio_wad_cv/
 ├── style.css               ← Design system & animations (2,017 lines)
 ├── script.js               ← Logic, rendering, animations (564 lines)
 ├── three-init.js           ← Three.js 3D scene initialization (555 lines)
+├── sw.js                   ← Service Worker (offline support) — NEW
 ├── debug.html              ← Debug/testing page
-├── todo.md                   ← Prioritized task list (22 tasks, 4 phases)
-├── decision-log.md           ← Decision records
+├── todo.md                 ← Prioritized task list (22 tasks, 4 phases)
+├── decision-log.md         ← Decision records
 ├── PROJECT_DESCRIPTION.md  ← Detailed technical breakdown (300 lines)
 ├── PROJECT_STATE.md        ← This file (session state)
 ├── data/
-│   ├── content.json        ← Main data store (577 lines)
+│   ├── content.json        ← Main content store (577 lines)
 │   └── lang/
 │       ├── ar.json         ← Arabic translations
 │       └── en.json         ← English translations
@@ -89,7 +90,7 @@ portfolio_wad_cv/
 └── .git/
 ```
 
-**Total lines of code:** ~3,939 lines
+**Total lines of code:** ~4,030 lines
 
 ---
 
@@ -140,6 +141,12 @@ portfolio_wad_cv/
 - Wireframe overlays for depth
 - Limited to 25-35 objects for performance
 
+### `sw.js` — Service Worker (NEW)
+- Cache-first strategy for offline support
+- Caches all static assets (HTML, CSS, JS, JSON, SVG, PDF)
+- Automatic cache cleanup on activation
+- SW registration with update detection
+
 ---
 
 ## AI AGENT RULES
@@ -183,6 +190,7 @@ To reduce token usage:
 - Animation: GSAP ScrollTrigger + Three.js + Particles.js (independent systems)
 - Language: Client-side switching via `updateLanguageUI()` — no page reload
 - Responsive: Mobile-first with 768px and 1024px breakpoints
+- **Offline Support:** Service Worker with cache-first strategy (T16)
 
 **State Management:** None needed — pure static rendering from JSON data
 
@@ -199,7 +207,8 @@ To reduce token usage:
 - [ ] See `todo.md` — 22 prioritized tasks across 4 phases
 - [x] Phase 1 (Critical): T01-T03 ✅ مكتملة
 - [x] Phase 2 (High): T04-T09 ✅ مكتملة
-|- [x] Phase 3 (Medium): T10-T15 ✅ مكتملة بالكامل
+- [x] Phase 3 (Medium): T10-T15 ✅ مكتملة بالكامل
+- [ ] Phase 4 (Low): T16-T22 🔧 جارية — T16 مكتمل
 
 ---
 
@@ -228,11 +237,13 @@ To reduce token usage:
 - ✅ T07 — Structured Data (JSON-LD Person Schema)
 - ✅ T08 — Download CV Button (Hero CTA + PDF placeholder + i18n keys)
 - ✅ T09 — Social Media Links (LinkedIn, X/Twitter, ResearchGate + SVG icons + JSON-LD sameAs + AR/EN i18n)
-|- ✅ T10 — Loading Screen / Skeleton (overlay + spinner + skeleton cards + glassmorphism + i18n)
-|- ✅ T11 — Scroll Progress Indicator (fixed gradient bar with glow + rAF scroll listener)
-|- ✅ T12 — Timeline View (Experience & Education — vertical timeline with alternating cards, dots, year badges, RTL support)
-|- ✅ T13 — Skill Proficiency Bars (categorized progress bars with animation + RTL support + level percentages)
-|- ✅ T14 — Smooth Scroll for Nav Links (intercept clicks, scrollTo with nav offset + mobile menu close + history.pushState)
+- ✅ T10 — Loading Screen / Skeleton (overlay + spinner + skeleton cards + glassmorphism + i18n)
+- ✅ T11 — Scroll Progress Indicator (fixed gradient bar with glow + rAF scroll listener)
+- ✅ T12 — Timeline View (Experience & Education — vertical timeline with alternating cards, dots, year badges, RTL support)
+- ✅ T13 — Skill Proficiency Bars (categorized progress bars with animation + RTL support + level percentages)
+- ✅ T14 — Smooth Scroll for Nav Links (intercept clicks, scrollTo with nav offset + mobile menu close + history.pushState)
+- ✅ T15 — Contact Form (validation + mailto: submit + error handling + success feedback + i18n + RTL)
+- ✅ T16 — Service Worker (Offline Support — cache-first strategy + SW registration + assets caching)
 
 ---
 
@@ -244,6 +255,7 @@ To reduce token usage:
 | `style.css` | Design system, animations, responsive |
 | `script.js` | Logic, rendering, language switching, animations |
 | `three-init.js` | Three.js 3D scene setup |
+| `sw.js` | Service Worker — offline support (NEW) |
 | `data/content.json` | Main content data store |
 | `data/lang/ar.json` | Arabic UI translations |
 | `data/lang/en.json` | English UI translations |
@@ -319,6 +331,6 @@ At the beginning of every new session:
 
 **Date:** 2026-05-15
 
-**Last completed task:** T14 — Smooth Scroll for Nav Links (intercept clicks, scrollTo with nav offset + mobile menu close + history.pushState)
+**Last completed task:** T16 — Service Worker (Offline Support — cache-first strategy + SW registration + assets caching)
 
-**Current project status:** Stable — core features + loading screen + scroll progress + timeline view + skill bars + smooth scroll implemented, 8 improvement tasks remaining (T15–T22)
+**Current project status:** Stable — core features + loading screen + scroll progress + timeline view + skill bars + smooth scroll + contact form + offline support implemented, 6 remaining tasks (T17–T22)

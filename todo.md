@@ -179,27 +179,29 @@
 ---
 
 ### T15 — Contact Form
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `index.html`, `style.css`, `script.js`  
-**الوصف:** Contact section يعرض معلومات فقط — لا يوجد نموذج مراسلة.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `index.html`, `style.css`, `script.js`, `data/lang/ar.json`, `data/lang/en.json`  
+**الوصف:** تم إضافة نموذج تواصل كامل مع validation + submit عبر `mailto:` + دعم RTL + i18n.  
 **الخطوات:**
-1. إضافة form مع حقول: الاسم، البريد، الموضوع، الرسالة
-2. CSS: glassmorphism cards للمدخلات
-3. JS: validation + submit عبر `mailto:` أو Formspree
-4. دعم RTL: اتجاه الحقول
+1. ✅ إضافة form مع حقول: الاسم، البريد، الموضوع، الرسالة (موجود مسبقاً في HTML)
+2. ✅ CSS: glassmorphism cards للمدخلات (موجود مسبقاً في CSS)
+3. ✅ JS: validation + submit عبر `mailto:` + error handling + success feedback
+4. ✅ دعم RTL: اتجاه الحقول (موجود مسبقاً في CSS)
+5. ✅ إضافة i18n keys لـ `contact_form.*` في ar.json و en.json
+6. ✅ إضافة `data-i18n-placeholder` support في `updateLanguageUI`
 
 ---
 
 ## 🟢 LOW — تحسينات إضافية
 
 ### T16 — Service Worker (Offline Support)
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `sw.js`, `index.html`  
-**الوصف:** لا يوجد offline support — يمكن إضافة service worker.  
+**الوصف:** تم إضافة Service Worker مع cache-first strategy — الموقع يعمل بدون إنترنت.  
 **الخطوات:**
-1. إنشاء `sw.js` مع cache-first strategy
-2. تسجيل SW في `index.html`
-3. إضافة assets للـ cache
+1. ✅ إنشاء `sw.js` مع cache-first strategy
+2. ✅ تسجيل SW في `index.html`
+3. ✅ إضافة جميع assets للـ cache
 
 ---
 
@@ -294,7 +296,7 @@
 المرحلة 1: Critical (T01-T03)      [✅ مكتملة بالكامل]
  المرحلة 2: High (T04-T09)           [✅ مكتملة بالكامل]
 المرحلة 3: Medium (T10-T15)         [✅ مكتملة بالكامل]
-المرحلة 4: Low (T16-T22)            [⏳ لم تبدأ]
+المرحلة 4: Low (T16-T22)            [🔧 جارية — T16 مكتمل]
 ```
 
 ---
@@ -306,3 +308,5 @@
 *T12 مكتمل: Timeline View (Experience & Education) — ✅*
 *T13 مكتمل: Skill Proficiency Bars (categorized progress bars) — ✅*
 *T14 مكتمل: Smooth Scroll for Nav Links — ✅*
+*T15 مكتمل: Contact Form (validation + mailto: + i18n + RTL) — ✅*
+*T16 مكتمل: Service Worker (Offline Support) — ✅*
