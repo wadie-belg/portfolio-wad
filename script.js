@@ -174,8 +174,177 @@ function getI18nText(trans, key, lang) {
     return getProp(trans, key, lang);
 }
 
+// =============================================
+// DATA VALIDATION ENGINE (T21)
+// =============================================
+function validateContent() {
+    const warnings = [];
+    const data = PORTFOLIO_DATA.content;
+
+    // 1. Check top-level sections exist
+    const requiredSections = ['personal', 'about', 'experience', 'education', 'conferences', 'skills', 'extra', 'achievements'];
+    for (const section of requiredSections) {
+        if (!data[section]) {
+            warnings.push(`⚠️ Missing required section: "${section}"`);
+        }
+    }
+
+    // 2. Validate personal info
+    if (data.personal) {
+        if (!data.personal.name || (!data.personal.name.en && !data.personal.name.ar)) {
+            warnings.push('⚠️ personal.name is empty or missing both en/ar');
+        }
+        if (!data.personal.title || (!data.personal.title.en && !data.personal.title.ar)) {
+            warnings.push('⚠️ personal.title is empty or missing both en/ar');
+        }
+        if (data.personal.details) {
+            data.personal.details.forEach((d, i) => {
+                const label = getProp(d, 'label', 'en') || `detail[${i}]`;
+                const value = getProp(d, 'value', 'en') || '';
+                if (!value) {
+                    warnings.push(`⚠️ personal.details[${i}] (${label}) has empty value`);
+                }
+            });
+        }
+    }
+
+    // 3. Validate about section
+    if (data.about) {
+        if (!data.about.en || data.about.en.trim() === '') {
+            warnings.push('⚠️ about.en is empty');
+        }
+        if (!data.about.ar || data.about.ar.trim() === '') {
+            warnings.push('⚠️ about.ar is empty');
+        }
+    }
+
+    // 4. Validate experience
+    if (data.experience) {
+        data.experience.forEach((exp, i) => {
+            const catEn = getProp(exp, 'category', 'en') || `category[${i}]`;
+            if (!exp.items || exp.items.length === 0) {
+                warnings.push(`⚠️ experience[${i}] ("${catEn}") has no items`);
+                return;
+            }
+            exp.items.forEach((item, j) => {
+                const role = getProp(item, 'role', 'en') || `role[${j}]`;
+                if (!getProp(item, 'period', 'en')) {
+                    warnings.push(`⚠️ experience[${i}].items[${j}] ("${role}") missing period`);
+                }
+                if (!getProp(item, 'entity', 'en')) {
+                    warnings.push(`⚠️ experience[${i}].items[${j}] ("${role}") missing entity`);
+                }
+            });
+        });
+    }
+
+    // 5. Validate education
+    if (data.education) {
+        data.education.forEach((edu, i) => {
+            const degree = getProp(edu, 'degree', 'en') || `degree[${i}]`;
+            if (!getProp(edu, 'year', 'en')) {
+                warnings.push(`⚠️ education[${i}] ("${degree}") missing year`);
+            }
+            if (!getProp(edu, 'institution', 'en')) {
+                warnings.push(`⚠️ education[${i}] ("${degree}") missing institution`);
+            }
+        });
+    }
+
+    // 6. Validate conferences
+    if (data.conferences) {
+        data.conferences.forEach((conf, i) => {
+            const title = getProp(conf, 'title', 'en') || `conference[${i}]`;
+            if (!getProp(conf, 'year', 'en')) {
+                warnings.push(`⚠️ conferences[${i}] ("${title}") missing year`);
+            }
+            if (!getProp(conf, 'org', 'en')) {
+                warnings.push(`⚠️ conferences[${i}] ("${title}") missing organization`);
+            }
+        });
+    }
+
+    // 7. Validate skills
+    if (data.skills) {
+        ['languages', 'technical'].forEach(cat => {
+            if (data.skills[cat]) {
+                data.skills[cat].forEach((skill, i) => {
+                    const name = getProp(skill, '', cat === 'languages' ? 'en' : 'en') || skill.en || `${cat}[${i}]`;
+                    if (skill.level !== undefined) {
+                        if (typeof skill.level !== 'number' || skill.level < 0 || skill.level > 100) {
+                            warnings.push(`⚠️ skills.${cat}[${i}] ("${name}") has invalid level: ${skill.level} (expected 0-100)`);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    // 8. Validate achievements
+    if (data.achievements) {
+        data.achievements.forEach((ach, i) => {
+            const title = getProp(ach, 'title', 'en') || `achievement[${i}]`;
+            if (!ach.icon) {
+                warnings.push(`⚠️ achievements[${i}] ("${title}") missing icon`);
+            }
+            if (!getProp(ach, 'desc', 'en')) {
+                warnings.push(`⚠️ achievements[${i}] ("${title}") missing description`);
+            }
+        });
+    }
+
+    // 9. Validate social URLs
+    if (data.social) {
+        Object.entries(data.social).forEach(([platform, info]) => {
+            if (info.url) {
+                try {
+                    new URL(info.url);
+                } catch {
+                    warnings.push(`⚠️ social.${platform} has invalid URL: "${info.url}"`);
+                }
+            } else {
+                warnings.push(`⚠️ social.${platform} missing URL`);
+            }
+        });
+    }
+
+    // 10. Validate translations
+    ['en', 'ar'].forEach(lang => {
+        if (!PORTFOLIO_DATA.translations[lang]) {
+            warnings.push(`⚠️ Missing translations for language: "${lang}"`);
+            return;
+        }
+        const trans = PORTFOLIO_DATA.translations[lang];
+        if (!trans.nav) warnings.push(`⚠️ translations.${lang}.nav is missing`);
+        if (!trans.sections) warnings.push(`⚠️ translations.${lang}.sections is missing`);
+        if (!trans.hero) warnings.push(`⚠️ translations.${lang}.hero is missing`);
+        if (!trans.stats) warnings.push(`⚠️ translations.${lang}.stats is missing`);
+    });
+
+    // 11. Validate extra (publications & hobbies)
+    if (data.extra) {
+        if (!data.extra.publications || data.extra.publications.length === 0) {
+            warnings.push('⚠️ extra.publications is empty');
+        }
+        if (!data.extra.hobbies || data.extra.hobbies.length === 0) {
+            warnings.push('⚠️ extra.hobbies is empty');
+        }
+    }
+
+    // Report results
+    if (warnings.length === 0) {
+        console.log('✅ Content validation passed — all required fields present.');
+    } else {
+        console.warn(`📋 Content validation: ${warnings.length} warning(s) found:`);
+        warnings.forEach(w => console.warn(w));
+    }
+
+    return warnings;
+}
+
 // Main Initialization
   document.addEventListener('DOMContentLoaded', () => {
+    validateContent();
     initAnimations();
     setupLanguage();
     renderAll(currentLang);
@@ -234,7 +403,10 @@ function updateLanguageUI(lang) {
 
     // 3. Update Switcher Button
     const btn = document.getElementById('lang-switcher');
-    if (btn) btn.innerText = langTrans.lang_btn;
+    if (btn) {
+        btn.innerText = langTrans.lang_btn;
+        btn.setAttribute('aria-label', lang === 'ar' ? 'Switch language to English' : 'التبديل إلى العربية');
+    }
 
     // 4. Update Footer (dynamic year)
     const footerEl = document.querySelector('footer p');
@@ -346,33 +518,39 @@ function renderAll(lang) {
         
         skillsContainer.innerHTML = `
             <div class="skills-categorized">
-                <div class="skill-category">
+                <div class="skill-category" role="group" aria-label="${langLabels.languages}">
                     <h3>🌐 ${langLabels.languages}</h3>
-                    ${data.skills.languages.map(s => `
-                        <div class="skill-item">
+                    ${data.skills.languages.map(s => {
+                        const name = getProp(s, '', lang) || s[lang];
+                        return `
+                        <div class="skill-item" role="progressbar" aria-valuenow="${s.level}" aria-valuemin="0" aria-valuemax="100" aria-label="${name}">
                             <div class="skill-item-header">
-                                <span class="skill-item-name">${getProp(s, '', lang) || s[lang]}</span>
+                                <span class="skill-item-name">${name}</span>
                                 <span class="skill-item-level">${s.level}%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-bar-fill" style="--level: ${s.level}%"></div>
                             </div>
                         </div>
-                    `).join('')}
+                    `;
+                    }).join('')}
                 </div>
-                <div class="skill-category">
+                <div class="skill-category" role="group" aria-label="${langLabels.technical}">
                     <h3>⚡ ${langLabels.technical}</h3>
-                    ${data.skills.technical.map(s => `
-                        <div class="skill-item">
+                    ${data.skills.technical.map(s => {
+                        const name = getProp(s, '', lang) || s[lang];
+                        return `
+                        <div class="skill-item" role="progressbar" aria-valuenow="${s.level}" aria-valuemin="0" aria-valuemax="100" aria-label="${name}">
                             <div class="skill-item-header">
-                                <span class="skill-item-name">${getProp(s, '', lang) || s[lang]}</span>
+                                <span class="skill-item-name">${name}</span>
                                 <span class="skill-item-level">${s.level}%</span>
                             </div>
                             <div class="skill-bar">
                                 <div class="skill-bar-fill" style="--level: ${s.level}%"></div>
                             </div>
                         </div>
-                    `).join('')}
+                    `;
+                    }).join('')}
                 </div>
             </div>
         `;
@@ -433,10 +611,10 @@ function renderAll(lang) {
 
         socialLinks.innerHTML = `
             <div class="social-label" data-i18n="social.connect">Connect With Me</div>
-            <div class="social-grid">
+            <div class="social-grid" role="list" aria-label="Social media links">
                 ${platforms.map(p => `
-                    <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="social-card">
-                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="social-card" role="listitem" aria-label="Follow on ${p.label}">
+                        <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             ${p.icon}
                         </svg>
                         <span class="social-label-text">${p.label}</span>
@@ -450,8 +628,8 @@ function renderAll(lang) {
     const achContainer = document.getElementById('achievements-container');
     if (achContainer) {
         achContainer.innerHTML = data.achievements.map(a => `
-            <div class="achievement-card">
-                <span class="achievement-icon">${a.icon}</span>
+            <div class="achievement-card" role="article" aria-label="${getProp(a, 'title', lang)}">
+                <span class="achievement-icon" aria-hidden="true">${a.icon}</span>
                 <div class="achievement-title">${getProp(a, 'title', lang)}</div>
                 <div class="achievement-desc">${getProp(a, 'desc', lang)}</div>
             </div>
@@ -660,7 +838,9 @@ function initActiveNav() {
         if (bestEntry) {
             const id = bestEntry.target.id;
             navLinks.forEach(link => {
-                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                const isActive = link.getAttribute('href') === `#${id}`;
+                link.classList.toggle('active', isActive);
+                link.setAttribute('aria-current', isActive ? 'page' : 'false');
             });
         }
     }, observerOptions);
@@ -695,7 +875,9 @@ function initActiveNav() {
 
                 if (currentSection) {
                     navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href') === `#${currentSection}`);
+                        const isActive = link.getAttribute('href') === `#${currentSection}`;
+                        link.classList.toggle('active', isActive);
+                        link.setAttribute('aria-current', isActive ? 'page' : 'false');
                     });
                 }
                 ticking = false;

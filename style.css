@@ -86,6 +86,30 @@ body {
     -webkit-transform: translateZ(0);
 }
 
+/* === SKIP TO CONTENT LINK (Accessibility) === */
+.skip-to-content {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--bg-primary);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0 0 8px 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    z-index: 10000;
+    transition: top 0.3s ease;
+    box-shadow: 0 4px 20px rgba(6, 182, 212, 0.4);
+}
+
+.skip-to-content:focus {
+    top: 0;
+    outline: 3px solid var(--accent-light);
+    outline-offset: 2px;
+}
+
 /* === BACKGROUND LAYERS === */
 /* === BACKGROUND CANVAS (Three.js 3D Objects) === */
 #canvas-container {

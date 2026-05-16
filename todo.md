@@ -10,10 +10,10 @@
 ### T01 — إصلاح خطأ الترجمة في content.json
 **الحالة:** ✅ مكتمل  
 **الملفات:** `data/content.json`  
-**الوصف:** قيمة خاطئة في حقل البريد: `"برint_email"` بدلاً من `"البريد الإلكتروني"`.  
+**الوصف:** قيمة خاطئة في حقل البريد: `\"برint_email\"` بدلاً من `\"البريد الإلكتروني\"`.  
 **الخطوات:**
-1. ابحث عن `"برint_email"` في `content.json`
-2. استبدله بـ `"البريد الإلكتروني"`
+1. ابحث عن `\"برint_email\"` في `content.json`
+2. استبدله بـ `\"البريد الإلكتروني\"`
 3. تأكد من تطابق النص مع `script.js`
 
 ---
@@ -23,9 +23,9 @@
 **الملفات:** `index.html`  
 **الوصف:** الموقع بدون favicon — يضاف أيقونة صغيرة في تبويب المتصفح.  
 **الخطوات:**
-1. إنشاء SVG favicon بسيط (حرف "WB" بالألوان الأكسنت)
-2. إضافته في `<head>`: `<link rel="icon" href="favicon.svg" type="image/svg+xml">`
-3. إضافة fallback PNG: `<link rel="icon" href="favicon.png" type="image/png">`
+1. إنشاء SVG favicon بسيط (حرف \"WB\" بالألوان الأكسنت)
+2. إضافته في `<head>`: `<link rel=\"icon\" href=\"favicon.svg\" type=\"image/svg+xml\">`
+3. إضافة fallback PNG: `<link rel=\"icon\" href=\"favicon.png\" type=\"image/png\">`
 
 ---
 
@@ -34,8 +34,8 @@
 **الملفات:** `script.js`  
 **الوصف:** الفوتر يحتوي على `© 2024` ثابت — يجب أن يكون ديناميكيًا.  
 **الخطوات:**
-1. استبدال `"© 2024"` بـ `© ${new Date().getFullYear()}` في `script.js`
-2. أو إضافة `data-i18n="footer"` للفوتر
+1. استبدال `\"© 2024\"` بـ `© ${new Date().getFullYear()}` في `script.js`
+2. أو إضافة `data-i18n=\"footer\"` للفوتر
 
 ---
 
@@ -71,11 +71,11 @@
 **الملفات:** `index.html`  
 **الوصف:** تم إضافة meta tags للـ SEO — وصف، كلمات مفتاحية، Open Graph، Twitter Cards.  
 **الخطوات:**
-1. ✅ إضافة `<meta name="description" content="...">`
-2. ✅ إضافة `<meta name="keywords" content="...">`
+1. ✅ إضافة `<meta name=\"description\" content=\"...\">`
+2. ✅ إضافة `<meta name=\"keywords\" content=\"...\">`
 3. ✅ إضافة Open Graph tags (og:title, og:description, og:image, og:url)
 4. ✅ إضافة Twitter Card tags
-5. ✅ إضافة `<link rel="canonical" href="...">`
+5. ✅ إضافة `<link rel=\"canonical\" href=\"...\">`
 
 ---
 
@@ -84,7 +84,7 @@
 **الملفات:** `index.html`  
 **الوصف:** تم إضافة Schema.org Person markup لتحسين Rich Snippets في محركات البحث.  
 **الخطوات:**
-1. ✅ إضافة `<script type="application/ld+json">` في `<head>`
+1. ✅ إضافة `<script type=\"application/ld+json\">` في `<head>`
 2. ✅ تعريف Person schema مع الاسم، المهنة، العنوان، الهاتف، البريد
 3. ✅ إضافة `sameAs` لروابط التواصل الاجتماعي (قابلة للتعبئة لاحقاً)
 
@@ -93,10 +93,10 @@
 ### T08 — زر تحميل السيرة الذاتية (CV Download)
 **الحالة:** ✅ مكتمل  
 **الملفات:** `index.html`, `data/lang/ar.json`, `data/lang/en.json`  
-**الوصف:** تم إضافة زر "Download CV" في Hero CTA group مع ملف PDF placeholder.  
+**الوصف:** تم إضافة زر \"Download CV\" في Hero CTA group مع ملف PDF placeholder.  
 **الخطوات:**
-1. ✅ إضافة زر "Download CV" في Hero CTA group (بجانب Contact Me و Learn More)
-2. ✅ إضافة رابط `<a href="assets/cv/wadie-belgacem-cv.pdf" download>`
+1. ✅ إضافة زر \"Download CV\" في Hero CTA group (بجانب Contact Me و Learn More)
+2. ✅ إضافة رابط `<a href=\"assets/cv/wadie-belgacem-cv.pdf\" download>`
 3. ✅ إنشاء ملف PDF placeholder في `assets/cv/wadie-belgacem-cv.pdf`
 4. ✅ إضافة ترجمة `download_cv` في `ar.json` و `en.json`
 
@@ -124,7 +124,7 @@
 **الملفات:** `index.html`, `style.css`, `script.js`, `data/lang/ar.json`, `data/lang/en.json`  
 **الوصف:** تم إضافة شاشة تحميل مع spinner متحرك و skeleton cards وتأثير glassmorphism.  
 **الخطوات:**
-1. ✅ إضافة overlay loading في `<body>` مع رسالة "جارِ التحميل..."
+1. ✅ إضافة overlay loading في `<body>` مع رسالة \"جارِ التحميل...\"
 2. ✅ CSS: animation pulse على skeleton cards + glassmorphism
 3. ✅ JS: إخفاء overlay عند تحميل DOM + Three.js (1.5s) مع fallback 5s
 4. ✅ دعم RTL: اتجاه النص + إضافة key `loading` في ar.json و en.json
@@ -136,7 +136,7 @@
 **الملفات:** `index.html`, `style.css`, `script.js`  
 **الوصف:** تم إضافة شريط تقدم متحرك أعلى الصفحة بألوان gradient مع glow effect.  
 **الخطوات:**
-1. ✅ إضافة `<div class="scroll-progress" id="scroll-progress">` بعد loading screen
+1. ✅ إضافة `<div class=\"scroll-progress\" id=\"scroll-progress\">` بعد loading screen
 2. ✅ CSS: position fixed top, height 3px, gradient background (Cyan→Purple→Emerald), glow shadow
 3. ✅ JS: `initScrollProgress()` — تحديث `width` بناءً على `scrollY / docHeight * 100` مع rAF optimization
 4. ✅ دعم RTL: لا يؤثر على الشريط (position: fixed, width%)
@@ -163,7 +163,7 @@
 1. ✅ إضافة `level` field لكل مهارة في `content.json`
 2. ✅ تعديل renderAll لإنتاج skill bars بدلاً من tags
 3. ✅ إضافة animation fill على bars (requestAnimationFrame)
-4. ✅ دعم RTL: اتجاه التعبئة ([dir="rtl"] .skill-item-header { flex-direction: row-reverse })
+4. ✅ دعم RTL: اتجاه التعبئة ([dir=\"rtl\"] .skill-item-header { flex-direction: row-reverse })
 
 ---
 
@@ -221,61 +221,86 @@
 ---
 
 ### T18 — Reduced Motion Support
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `style.css`, `script.js`, `three-init.js`  
-**الوصف:** لا يوجد دعم لـ prefers-reduced-motion.  
+**الوصف:** دعم كامل لـ `prefers-reduced-motion` — إيقاف جميع الأنيميشن.  
 **الخطوات:**
-1. إضافة `@media (prefers-reduced-motion: reduce)` في CSS
-2. إيقاف Three.js animation loop عند التفضيل
-3. إيقاف GSAP animations
+1. ✅ إضافة `@media (prefers-reduced-motion: reduce)` في CSS (سطر 2464)
+2. ✅ إيقاف Three.js animation loop في `three-init.js` (سطر 126)
+3. ✅ إيقاف GSAP animations في `script.js` (سطر 664)
+4. ✅ إيقاف skill bar animation (سطر 559)
+5. ✅ إيقاف stats counter animation (سطر 704)
 
 ---
 
 ### T19 — ARIA Labels & Accessibility
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `index.html`, `script.js`  
-**الوصف:** نقص في aria-labels و roles.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `index.html`, `style.css`, `script.js`  
+**الوصف:** تم إضافة جميع aria-labels و roles و skip-to-content link.  
 **الخطوات:**
-1. إضافة aria-label على الأزرار والروابط
-2. إضافة role="navigation" على nav
-3. إضافة aria-current="page" للـ active link
-4. إضافة skip-to-content link
+1. ✅ إضافة aria-label على جميع الأزرار والروابط
+2. ✅ إضافة role=\"navigation\" على nav + role=\"menubar\" على ul
+3. ✅ إضافة aria-current=\"page\" للـ active link (في initActiveNav + scroll handler)
+4. ✅ إضافة skip-to-content link مع CSS styling
+5. ✅ إضافة role=\"progressbar\" على skill items مع aria-valuenow/aria-valuemin/aria-valuemax
+6. ✅ إضافة role=\"group\" على skill categories
+7. ✅ إضافة role=\"list\" و role=\"listitem\" على social media links
+8. ✅ إضافة role=\"article\" على achievement cards
+9. ✅ إضافة aria-hidden=\"true\" على العناصر الزخرفية (SVGs, hamburger lines, logo)
+10. ✅ إضافة aria-label ديناميكية لزر تبديل اللغة
+11. ✅ إضافة aria-label على جميع الأقسام الرئيسية
+12. ✅ إضافة focus-visible styles موجودة مسبقاً
 
 ---
 
 ### T20 — README.md
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `README.md` (جديد)  
-**الوصف:** لا يوجد README — يضاف ملف توثيق للمشروع.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `README.md`  
+**الوصف:** تم إنشاء ملف README شامل يغطي وصف المشروع، تعليمات التشغيل، هيكل الملفات، التعديل، والنشر.  
 **الخطوات:**
-1. إضافة وصف المشروع
-2. إضافة تعليمات التشغيل (فتح index.html)
-3. إضافة هيكل الملفات
-4. إضافة تعليمات التعديل (تغيير البيانات)
-5. إضافة تعليمات النشر (GitHub Pages, Netlify)
+1. ✅ إضافة وصف المشروع (عربي + إنجليزي)
+2. ✅ إضافة تعليمات التشغيل (فتح index.html، GitHub Pages، Netlify، Vercel)
+3. ✅ إضافة هيكل الملفات الكامل
+4. ✅ إضافة قسم التخصيص (تغيير البيانات، الترجمة، الأقسام الجديدة، الألوان)
+5. ✅ إضافة تعليمات النشر (GitHub Pages, Netlify drag & drop, Netlify CLI, Vercel)
+6. ✅ إضافة جدول الميزات والتقنية المستخدمة
+7. ✅ إضافة معلومات الأداء والتتبع
 
 ---
 
 ### T21 — Data Validation
-**الحالة:** ⏳ في الانتظار  
+**الحالة:** ✅ مكتمل  
 **الملفات:** `script.js`  
-**الوصف:** لا يوجد validation للبيانات — يمكن إضافة checks.  
+**الوصف:** تم إضافة `validateContent()` function — يتحقق من وجود الحقول المطلوبة، صحة URLs، قيم المهارات، الترجمات AR/EN، ويعرض تحذيرات في console.  
 **الخطوات:**
-1. إضافة validateContent() function
-2. التحقق من وجود حقول مطلوبة
-3. التحقق من صحة URLs
-4. عرض warnings في console
+1. ✅ إضافة `validateContent()` function في `script.js`
+2. ✅ التحقق من وجود 8 أقسام رئيسية (personal, about, experience, education, conferences, skills, extra, achievements)
+3. ✅ التحقق من personal.name, personal.title, personal.details values
+4. ✅ التحقق من about.en/ar
+5. ✅ التحقق من experience categories/items (period, entity)
+6. ✅ التحقق من education (year, institution)
+7. ✅ التحقق من conferences (year, org)
+8. ✅ التحقق من skill levels (0-100 range)
+9. ✅ التحقق من achievements (icon, desc)
+10. ✅ التحقق من social URLs (valid URL format)
+11. ✅ التحقق من translations (nav, sections, hero, stats for en/ar)
+12. ✅ التحقق من extra (publications, hobbies not empty)
+13. ✅ عرض نتائج التحقق في console (✅ أو ⚠️ warnings)
+14. ✅ استدعاء `validateContent()` عند DOMContentLoaded قبل renderAll
 
 ---
 
 ### T22 — Duplicate Data Cleanup
-**الحالة:** ⏳ في الانتظار  
-**الملفات:** `script.js`, `data/content.json`  
-**الوصف:** البيانات مكررة بين `content.json` و `PORTFOLIO_DATA` في `script.js`.  
+**الحالة:** ✅ مكتمل  
+**الملفات:** `sw.js` (update), `script.js` (source of truth), `README.md` (update), `PROJECT_STATE.md` (update)  
+**الوصف:** البيانات كانت مكررة بين `content.json` (placeholder غير مستخدم) و `PORTFOLIO_DATA` في `script.js` (المصدر الحقيقي).  
 **الخطوات:**
-1. تحديد مصدر الحقيقة (content.json أم script.js)
-2. إزالة التكرار
-3. إضافة function loadContent() لقراءة JSON
+1. ✅ تحديد مصدر الحقيقة: `PORTFOLIO_DATA` في `script.js`
+2. ✅ حذف `data/content.json` (بيانات وهمية placeholder غير محمّلة runtime)
+3. ✅ تحديث `sw.js` — إزالة `content.json` من قائمة الـ cache
+4. ✅ تحديث `README.md` — إزالة كل إشارات `content.json`
+5. ✅ تحديث `PROJECT_STATE.md` — إزالة كل إشارات `content.json`
+6. ✅ توحيد التوثيق: المصدر الوحيد هو `PORTFOLIO_DATA` في `script.js`
 
 ---
 
@@ -299,17 +324,11 @@
 المرحلة 1: Critical (T01-T03)      [✅ مكتملة بالكامل]
  المرحلة 2: High (T04-T09)           [✅ مكتملة بالكامل]
 المرحلة 3: Medium (T10-T15)         [✅ مكتملة بالكامل]
-المرحلة 4: Low (T16-T22)            [🔧 جارية — T16, T17 مكتمل]
+المرحلة 4: Low (T16-T22)            [✅ مكتملة بالكامل]
 ```
 
 ---
 
-*آخر تحديث: 2026-05-15*
+*آخر تحديث: 2026-05-16*
 *تم الإنشاء بواسطة: Hermes Agent*
-*T10 مكتمل: Loading Screen / Skeleton — ✅*
-*T11 مكتمل: Scroll Progress Indicator — ✅*
-*T12 مكتمل: Timeline View (Experience & Education) — ✅*
-*T13 مكتمل: Skill Proficiency Bars (categorized progress bars) — ✅*
-*T14 مكتمل: Smooth Scroll for Nav Links — ✅*
-*T15 مكتمل: Contact Form (validation + mailto: + i18n + RTL) — ✅*
-*T16 مكتمل: Service Worker (Offline Support) — ✅*
+*T10-T22 مكتملة — ✅ جميع المهام الـ 22 مكتملة بالكامل!*

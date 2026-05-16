@@ -15,7 +15,6 @@ const STATIC_ASSETS = [
     './script.js',
     './three-init.js',
     './favicon.svg',
-    './data/content.json',
     './data/lang/ar.json',
     './data/lang/en.json',
     './assets/cv/wadie-belgacem-cv.pdf'

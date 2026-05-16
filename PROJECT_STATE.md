@@ -52,9 +52,8 @@ The project is a **pure static site** (HTML + CSS + JS) with **embedded bilingua
 - **GSAP + ScrollTrigger** — Scroll-driven cinematic animations
 
 **Data Layer:**
-- `data/content.json` — All portfolio content (577 lines)
+- `script.js` `PORTFOLIO_DATA` object — All portfolio content embedded (564 lines)
 - `data/lang/ar.json` / `data/lang/en.json` — UI translations (21 keys each)
-- Embedded in `script.js` as `PORTFOLIO_DATA` object
 
 **Tooling:**
 - **SigMap** — Code signatures & context generation (`.github/copilot-instructions.md`)
@@ -78,10 +77,9 @@ portfolio_wad_cv/
 ├── PROJECT_DESCRIPTION.md  ← Detailed technical breakdown (300 lines)
 ├── PROJECT_STATE.md        ← This file (session state)
 ├── data/
-│   ├── content.json        ← Main content store (577 lines)
 │   └── lang/
-│       ├── ar.json         ← Arabic translations
-│       └── en.json         ← English translations
+│       ├── ar.json         ← Arabic UI translations
+│       └── en.json         ← English UI translations
 ├── assets/                 ← Static assets (images, fonts, etc.)
 ├── backup_v1_20260512_145604/  ← Snapshot backup
 ├── .github/
@@ -185,7 +183,7 @@ To reduce token usage:
 ## CURRENT ARCHITECTURE SUMMARY
 
 **Architecture Pattern:** Static site with embedded data (no server)
-- Data flows: `content.json` → `script.js` (`PORTFOLIO_DATA`) → DOM rendering
+- Data flows: `PORTFOLIO_DATA` (embedded in `script.js`) → DOM rendering
 - Styling: CSS custom properties + utility-first approach
 - Animation: GSAP ScrollTrigger + Three.js + Particles.js (independent systems)
 - Language: Client-side switching via `updateLanguageUI()` — no page reload
@@ -208,7 +206,7 @@ To reduce token usage:
 - [x] Phase 1 (Critical): T01-T03 ✅ مكتملة
 - [x] Phase 2 (High): T04-T09 ✅ مكتملة
 - [x] Phase 3 (Medium): T10-T15 ✅ مكتملة بالكامل
-- [ ] Phase 4 (Low): T16-T22 🔧 جارية — T16, T17 مكتمل
+|- [ ] Phase 4 (Low): T16-T22 🔧 جارية — T16, T17, T18, T19, T20, T21 مكتمل
 
 ---
 
@@ -219,8 +217,6 @@ To reduce token usage:
 - ✅ Particles.js interactive particle system
 - ✅ GSAP + ScrollTrigger scroll animations
 - ✅ Full bilingual support (AR/EN) with RTL layout
-- ✅ Data extracted to external `content.json`
-- ✅ Language files separated (`ar.json`, `en.json`)
 - ✅ Backup system created (`backup_v1_20260512_145604/`)
 - ✅ Git version control with 3 commits
 - ✅ SigMap code signatures generated
@@ -244,7 +240,9 @@ To reduce token usage:
 - ✅ T14 — Smooth Scroll for Nav Links (intercept clicks, scrollTo with nav offset + mobile menu close + history.pushState)
 - ✅ T15 — Contact Form (validation + mailto: submit + error handling + success feedback + i18n + RTL)
 - ✅ T16 — Service Worker (Offline Support — cache-first strategy + SW registration + assets caching)
-- ✅ T17 — Dark/Light Mode Toggle (theme switching + localStorage + prefers-color-scheme + RTL support)
+|- ✅ T17 — Dark/Light Mode Toggle (theme switching + localStorage + prefers-color-scheme + RTL support)
+|- ✅ T20 — README.md (project documentation: description, setup, structure, customization, deployment)
+|- ✅ T21 — Data Validation (validateContent() — 11 checks: sections, personal, about, experience, education, conferences, skills levels, achievements, social URLs, translations, extra)
 
 ---
 
@@ -257,7 +255,6 @@ To reduce token usage:
 | `script.js` | Logic, rendering, language switching, animations |
 | `three-init.js` | Three.js 3D scene setup |
 | `sw.js` | Service Worker — offline support (NEW) |
-| `data/content.json` | Main content data store |
 | `data/lang/ar.json` | Arabic UI translations |
 | `data/lang/en.json` | English UI translations |
 | `todo.md` | Prioritized task list (22 tasks, 4 phases) |
@@ -330,8 +327,8 @@ At the beginning of every new session:
 
 ## LAST UPDATED
 
-**Date:** 2026-05-15
+**Date:** 2026-05-16
 
-**Last completed task:** T17 — Dark/Light Mode Toggle (theme switching + localStorage + prefers-color-scheme + RTL support)
+**Last completed task:** T22 — Duplicate Data Cleanup (removed `content.json`, single source of truth: `PORTFOLIO_DATA` in `script.js`)
 
-**Current project status:** Stable — core features + loading screen + scroll progress + timeline view + skill bars + smooth scroll + contact form + offline support + dark/light mode toggle implemented, 5 remaining tasks (T18–T22)
+**Current project status:** ✅ ALL TASKS COMPLETE — Portfolio is fully built with all 22 tasks done.
