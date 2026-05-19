@@ -7,7 +7,7 @@
  * CDN resources (GSAP, Three.js, Google Fonts) handled by CDN caching.
  */
 
-const CACHE_NAME = 'portfolio-wadie-v1';
+const CACHE_NAME = 'portfolio-wadie-v2';
 const STATIC_ASSETS = [
     './',
     './index.html',
