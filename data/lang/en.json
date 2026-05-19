@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
+    "conferences": "Conferences",
+    "skills": "Skills",
+    "ai_tech": "AI & Sports Tech",
+    "contact": "Contact"
+  },
+  "sections": {
+    "about": "About Me",
+    "experience": "Professional Experience",
+    "education": "Educational Background",
+    "conferences": "Scientific Conferences & Seminars",
+    "skills": "Expertise & Skills",
+    "ai_tech": "AI & Sports Technology",
+    "extra_pubs": "Publications",
+    "extra_hobbies": "Interests & Hobbies",
+    "contact": "Get In Touch"
+  },
+  "download_cv": "Download CV",
+  "loading": "Loading...",
+  "social": {
+    "connect": "Connect With Me"
+  },
+  "contact_form": {
+    "name": "Name",
+    "name_placeholder": "Enter your full name",
+    "email": "Email",
+    "email_placeholder": "example@email.com",
+    "subject": "Subject",
+    "subject_placeholder": "Message subject",
+    "message": "Message",
+    "message_placeholder": "Write your message here...",
+    "submit": "Send Message",
+    "name_required": "Please enter your name",
+    "email_required": "Please enter your email",
+    "email_invalid": "Please enter a valid email address",
+    "subject_required": "Please enter a subject",
+    "message_required": "Please enter your message",
+    "submitting": "Sending...",
+    "success": "Your message has been sent successfully! I'll get back to you soon.",
+    "error": "An error occurred while sending. Please try again or email me directly."
+  },
+  "ai_tech": {
+    "skills_title": "Technical Skills",
+    "tools_title": "AI Tools & Workflows",
+    "projects_title": "Featured Projects"
+  },
+  "footer": "© 2024 Wadie Belgacem. Excellence in Sports Science."
+}

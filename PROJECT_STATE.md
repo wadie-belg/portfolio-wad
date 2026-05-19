@@ -52,7 +52,7 @@ The project is a **pure static site** (HTML + CSS + JS) with **embedded bilingua
 - **GSAP + ScrollTrigger** — Scroll-driven cinematic animations
 
 **Data Layer:**
-- `script.js` `PORTFOLIO_DATA` object — All portfolio content embedded (564 lines)
+- `script.js` `PORTFOLIO_DATA` object — All portfolio content embedded (~635 lines for data, ~449 lines for functions)
 - `data/lang/ar.json` / `data/lang/en.json` — UI translations (21 keys each)
 
 **Tooling:**
@@ -66,9 +66,9 @@ The project is a **pure static site** (HTML + CSS + JS) with **embedded bilingua
 
 ```
 portfolio_wad_cv/
-├── index.html              ← HTML5 structure (226 lines)
-├── style.css               ← Design system & animations (2,017 lines)
-├── script.js               ← Logic, rendering, animations (564 lines)
+├── index.html              ← HTML5 structure (359 lines)
+├── style.css               ← Design system & animations (3,117 lines)
+├── script.js               ← Logic, rendering, animations (1,084 lines)
 ├── three-init.js           ← Three.js 3D scene initialization (555 lines)
 ├── sw.js                   ← Service Worker (offline support) — NEW
 ├── debug.html              ← Debug/testing page
@@ -88,7 +88,7 @@ portfolio_wad_cv/
 └── .git/
 ```
 
-**Total lines of code:** ~4,030 lines
+**Total lines of code:** ~5,115 lines
 
 ---
 
@@ -241,8 +241,10 @@ To reduce token usage:
 - ✅ T15 — Contact Form (validation + mailto: submit + error handling + success feedback + i18n + RTL)
 - ✅ T16 — Service Worker (Offline Support — cache-first strategy + SW registration + assets caching)
 |- ✅ T17 — Dark/Light Mode Toggle (theme switching + localStorage + prefers-color-scheme + RTL support)
-|- ✅ T20 — README.md (project documentation: description, setup, structure, customization, deployment)
-|- ✅ T21 — Data Validation (validateContent() — 11 checks: sections, personal, about, experience, education, conferences, skills levels, achievements, social URLs, translations, extra)
+||- ✅ T20 — README.md (project documentation: description, setup, structure, customization, deployment)
+||- ✅ T21 — Data Validation (validateContent() — 11 checks: sections, personal, about, experience, education, conferences, skills levels, achievements, social URLs, translations, extra)
+|- ✅ IMP-03 — Experience Section Visuals (gradient panels + SVG icons + flex layout + RTL support + responsive)
+|- ✅ IMP-05 — AI & Sports Technology Section (full section with skills grid, tools grid, project cards + descriptions + tech tags + CSS styling + responsive + RTL + i18n)
 
 ---
 
@@ -325,10 +327,31 @@ At the beginning of every new session:
 
 ---
 
+## DESIGN SYSTEM
+
+The project follows a **warm editorial design system** documented in `DESIGN.md`:
+
+- **Canvas:** Warm cream (#faf9f5) — never pure white
+- **Primary accent:** Coral (#cc785c) — warm, muted, used sparingly
+- **Display typography:** Serif (Copernicus / Cormorant Garamond fallback) at weight 400 with negative letter-spacing
+- **Body typography:** Humanist sans (Inter) at weight 400–500
+- **Dark surfaces:** Navy (#181715) for code/project showcases and footer
+- **Elevation:** Color-block first, shadow rare
+- **Section rhythm:** 96px between sections, 32px inside cards
+- **Border radius:** 8px buttons, 12px cards, 16px hero containers, pill badges
+
+See `DESIGN.md` for the complete design token reference (colors, typography, spacing, components, Do's/Don'ts).
+
+---
+
 ## LAST UPDATED
 
-**Date:** 2026-05-16
+**Date:** 2026-05-17
 
-**Last completed task:** T22 — Duplicate Data Cleanup (removed `content.json`, single source of truth: `PORTFOLIO_DATA` in `script.js`)
+**Last completed task:** IMP-05 — إضافة قسم "الذكاء الاصطناعي وتكنولوجيا الرياضة" — إنشاء قسم كامل يعرض المهارات التقنية، أدوات الذكاء الاصطناعي، وسرد المشاريع المميزة مع بطاقات تقنية ووسوم تقنية وتصميم متجاوب ودعم RTL وترجمة ثنائية.
 
-**Current project status:** ✅ ALL TASKS COMPLETE — Portfolio is fully built with all 22 tasks done.
+**Current project status:** ✅ ALL TASKS COMPLETE — Portfolio is fully built with all 22 tasks done. Phase 2 improvements: IMP-01 ✅, IMP-02 ✅, IMP-03 ✅, IMP-05 ✅ completed.
+
+**New:** `DESIGN.md` created — comprehensive design system reference for AI agents (colors, typography, spacing, components, responsive behavior, Do's/Don'ts).
+
+**New:** `to_improve.md` created — Phase 2 improvement tasks (IMP-01 through IMP-05). IMP-01 ✅, IMP-02 ✅, IMP-03 ✅ completed.
